@@ -1,0 +1,203 @@
+/** Styling sheet for index HTML pages */
+
+/** Set styling for filter2 section - Activities and Interests */
+.filter2{
+  font-family: verdana, sans-serif;
+  width:90%;
+  margin: 0 auto 0 auto;
+}
+
+/** Set position and styling for activities selectbox*/
+#activ{
+  width:300px;
+  height:30px;
+  font-size: 0.8em ;
+}
+
+/** Set position and styling for activities selectbox*/
+#intr{
+  width:300px;
+  height:30px;
+  font-size: 0.8em ;
+}
+
+/** Set position for map section*/
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+/** Set styling for map result*/
+.map{
+  text-align: center;
+  margin: 0 auto 0 auto;
+  max-width: 70%;
+  height: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/** Set styling for list results section*/
+.list{
+  text-align: center;
+  margin: 0 auto 0 auto;
+  max-width: 70%;
+  display: block;
+  height: auto;
+  font-family: verdana, sans-serif;
+  background-color: #D7D6D6;
+  width: 70%;
+}
+
+/** Set styling for parkname text in list results section*/
+#parkname{
+ font-weight: bold;
+ font-family: times, serif;
+ font-size: 1.5em;
+ text-decoration: underline;
+ cursor: pointer;
+}
+
+/** Set styling for parkdescription text in list results section*/
+#parkdescription{
+ font-family: times, serif;
+ font-size: 1em;
+ padding: .25em;
+}
+
+/** Set styling for parklocation text in list results section*/
+#parklocation{
+  font-family: times, serif;
+  font-size: 1em;
+  font-weight:bold;
+  padding: .25em;
+ }
+
+/** Set styling for distance text in list results section*/
+#distance{
+  font-family: times, serif;
+  font-size: 1em;
+  font-style: italic;
+  padding: .25em;
+ }
+
+/** Set styling and positioning for park information article in list results section*/
+#text{
+  text-align: center;
+  margin: 0 auto 0 auto;
+  max-width: 80%;
+}
+
+/** Set universal padding and margin */
+*{
+  padding: 0;
+  margin: 0;
+}
+
+/** Set width for multipleselection1 class for activities */
+.multipleSelection1 {
+  width: 200px;
+}
+
+/** Set position for selectBox1 class for activities */
+.selectBox1{
+  position: relative;
+}
+
+/** Set position for selectBox1 class for select options for activities */
+.selectBox1 select {
+  width: 100%;
+  height:30px;
+  font-size: 1em;
+}
+
+/** Set position for overSelect1 class for activities */
+.overSelect1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/** Set styling for checkboxes1 id dropdown options for activities */
+#checkboxes1 {
+  display: none;
+  border: 1px #dadada solid;
+  background-color:white;
+  color: black;
+  text-align: left;
+  padding-left:5px;
+}
+
+/** Set styling for checkboxes1 dropdown options label/text for activities */
+#checkboxes1 label {
+  display: block;
+  font-weight: normal;
+  font-size:15px;
+}
+
+/** Set styling on hover over for checkboxes1 dropdown options label/text for activities */
+#checkboxes1 label:hover {
+  background-color: #1e90ff;
+}
+
+/** Set width for multipleselection1 class for interests*/
+.multipleSelection2 {
+  width: 200px;
+}
+
+/** Set position for selectBox2 class for interests */
+.selectBox2{
+  position: relative;
+}
+
+/** Set position for selectBox2 class for select options for interests */
+.selectBox2 select {
+  width: 100%;
+  height:30px;
+  font-size: 1em ;
+}
+
+/** Set position for overSelect2 class for interests */
+.overSelect2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/** Set styling for checkboxes2 id dropdown options for interests */
+#checkboxes2 {
+  display: none;
+  border: 1px #dadada solid;
+  background-color:white;
+  color: black;
+  text-align: left;
+  padding-left:5px;
+}
+
+/** Set styling for checkboxes2 dropdown options label/text for interests */
+#checkboxes2 label {
+  display: block;
+  font-weight: normal;
+  font-size:15px;
+  font-family: sans-serif;
+}
+
+/** Set styling on hover over for checkboxes2 dropdown options label/text for interests */
+#checkboxes2 label:hover {
+  background-color: #1e90ff;
+}
+
+/** Set position and styling for the container class for dropdowns for filters- activities and interests */
+.container {
+  font-weight: normal;
+  font-size:15px;
+  font-family: sans-serif;
+  border:2px solid #ccc;
+  width:300px;
+  height: 100px;
+  overflow-y: scroll;
+}

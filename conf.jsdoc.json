@@ -1,0 +1,9 @@
+{
+    "opts":{
+        "destination": "./out/"
+    },
+    "source":{
+        "include": ["./"],
+        "exclude": ["./node_modules/", "./out/"]
+    }
+}
