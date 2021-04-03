@@ -1,0 +1,92 @@
+<!-- Start of HTML document-->
+<!DOCTYPE html>
+<html lang ="en"> <!-- Language is English-->
+<!-- Start of head-->
+    <head>
+        <title>Project 2_Alpha Release</title> <!-- Document title-->
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="reset.css"/> <!-- Link reset CSS file-->
+        <link rel="stylesheet" type="text/css" href="common.css"/> <!-- Link common CSS file-->
+        <link rel="stylesheet" type="text/css" href="results.css"/> <!-- Link results CSS file-->
+        <script type="text/javascript" src = config.js></script> <!-- Link config JS file-->
+        <script type="text/javascript" src = search.js defer></script> <!-- Link seacrch JS file-->
+        <script type="text/javascript" src = map.js></script> <!-- Link map JS file-->
+    </head>
+    <!-- End of head-->
+    <!-- Start of body-->
+    <body>
+        <!-- Start of page header-->
+        <header class= "head">
+            <h1>National Park Finder</h1>  <!-- Page title-->
+        </header>
+        <!-- End of page header-->
+        <!-- Start of Main for filters-->
+        <main class = "filters">
+            <!-- Start of Form for filters-->
+            <form id="filter">
+                 <!-- Start of section for filters- activities and interests -->
+                <section class="filter2">
+                    <!-- Start of div for activities filter -->
+                    <div class="multipleSelection1"> 
+                        <!-- Label for activities -->
+                        <label>Activities</label>
+                        <!-- Start of div for select activities -->
+                        <div id="activ" class="selectBox1" onclick="showCheckboxes1()">
+                            <select>
+                                <option id= "selection1" name ="activities" value="SelectActivities">Select Activities</option>
+                            </select>
+                            <div class="overSelect1"></div>
+                        </div>
+                        <!-- End of div for select activities -->
+                        <!-- Start of div for checkbox dropdown options for activities filter -->
+                        <div id="checkboxes1" class="container">
+                        </div>
+                        <!-- End of div for checkbox dropdown options for activities filter -->
+                    </div>
+                    <!-- End of div for activities filter -->
+                    <!-- Start of div for interests filter -->
+                    <div class="multipleSelection2"> 
+                        <!-- Label for interests -->
+                        <label>Interests</label>
+                        <!-- Start of div for select interests -->
+                        <div id="intr"class="selectBox2" onclick="showCheckboxes2()">
+                            <select>
+                                <option id= "selection2" name ="interests" value="SelectInterests">Select Interests</option>
+                            </select>
+                            <div class="overSelect2"></div>
+                        </div>
+                        <!-- End of div for select interests -->
+                        <!-- Start of div for checkbox dropdown options for interests filter -->
+                        <div id="checkboxes2" class="container">
+                        </div>
+                        <!-- End of div for checkbox dropdown options for activities filter -->
+                    </div>
+                    <!-- End of div for interests filter -->
+                </section>
+                <!-- End of section for filters- activities and interests-->
+            </form>
+            <!-- End of Form for filters-->
+        </main>
+        <!-- End of Main of filters-->
+        <!-- Start of Main for results- map and list-->
+        <main class= "results">
+            <!-- Start of section for map-->
+            <section class="map">
+                <div id="map"></div>
+            </section>
+            <!-- End of section for map-->
+            <!-- Start of section for list-->
+            <section class="list">
+                <!-- Start of article for park details in list-->
+                <article id = "text">
+                </article>
+                <!-- End of article for park details in list-->
+            </section>
+            <!-- End of section for list-->
+        </main>
+        <!-- End of main-->
+    </body>
+    <!-- End of body-->
+</html> 
+<!-- End of HTML document-->

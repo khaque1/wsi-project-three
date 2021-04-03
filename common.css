@@ -1,0 +1,70 @@
+/** Common styling sheet for index and results HTML pages */
+
+/** Set styling for heading/title - National Park Finder */
+.head{
+    margin-top: -50px;
+    font-size :2.5em;
+    text-align: center;
+    margin:auto;
+    color: white;
+    padding-top: 0.75% ;
+    padding-bottom:0.75% ;
+    display: block;
+    font-family: times, serif;
+    background-color: #9D4040;
+    width: 70%;
+    height: auto;
+}
+
+/** Set styling for filters- Location,radius in index page and activities and interests in results page */
+.filters{
+    margin: 0 auto 0 auto;
+    text-align: center;
+    color: white;
+    height: auto;
+    background-color: #357C95;
+    width: 70%;
+}
+
+/** Set styling for form id filters- Location,radius in index page and activities and interests in results page */
+#filter{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin: 0 auto 0 auto;
+    text-align: left;
+    font-size: 1.5em;
+    color:white;
+    height: auto;
+    background-color: #357C95;
+    width: 70%;
+}
+
+/** Start of Progressive disclosure to the filters on index page */
+
+/* Set margin location for the form class */
+.form{
+    margin-left: 20px;
+} 
+
+/* Set margin for the form input-location filter and form-group class-radius filter */
+.form input ~ .form-group {
+    margin: 10px 0;
+}
+
+/* Set margin and padding spacing for the form input-location filter and form-group/label classes-radius filter */
+.form input ~ .form-group > label {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+/* Display form group-radius filter based on form input for location filter */
+.form input:invalid ~ .form-group {
+    display: none;
+}
+
+/* Set input and label form position for their classes */
+.form input + label{
+    padding-left: 0;
+}
+
+/** End of Progressive disclosure to the filters on index page */
