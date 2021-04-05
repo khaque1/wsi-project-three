@@ -94,7 +94,7 @@ function search(){
         localStorage.setItem("longitude", long);
         localStorage.setItem("radius", radius);
         // Call results.html page on click of search
-        window.location.href = "../results.html";
+        window.location.href = "../public/results.html";
       }
     });
   }
