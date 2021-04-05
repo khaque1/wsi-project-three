@@ -8,6 +8,12 @@ Be sure to FORK and CLONE a copy from GitHub account.
 * Kinza Haque ([@Kinza](https://github.com/khaque1))
 * Alison McDonald ([@Alison](https://github.com/missamcdonald))
 
+## To Run the Project:
+
+* Please ensure you have the necessary dependencies installed
+* In your project directory, run `node index.js`
+* Then, you are prompted to open [http://localhost:3000](http://localhost:3000) in the web browser of your choice
+
 # National Park Finder
 
 Below is the functionality documentation for our Project that includes commands to run JSDocs and ESLint
