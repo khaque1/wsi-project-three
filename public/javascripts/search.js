@@ -1,4 +1,4 @@
-// Function to calculate current position  
+// Function to calculate current position
 // @function getLocation
 function getLocation() {
   if (navigator.geolocation) {
@@ -7,21 +7,21 @@ function getLocation() {
   }
 }
 
-// Function to get the latitude and longitude positions  
+// Function to get the latitude and longitude positions
 // @function showPosition
 // @param {String} position position on the map
 function showPosition(position) {
-  // Get latitude coordinate 
+  // Get latitude coordinate
   // @var {number} lat
-  let lat = position.coords.latitude;   
-  // Get longitude coordinate 
+  let lat = position.coords.latitude;
+  // Get longitude coordinate
   // @var {number} long
   let long = position.coords.longitude;
-  // Combine both latitude and longutide 
+  // Combine both latitude and longutide
   // @var {String} location
-  // 
+  //
   let location = `${ lat },${ long }`;
-  console.log(location); 
+  console.log(location);
 }
 
 // Function to calculate current geo location of the user
@@ -38,20 +38,20 @@ function current_location(){
     let long = position.coords.longitude;
     // Combine both latitude and longutide
     let location = `${ lat },${ long }`;
-    console.log(location); 
+    console.log(location);
     // Call get address function to calculate address based on latitude and longitude coordinates
     getAddress(lat, long);
-    /**  
-      * Function to get adress from the latitude and longitude coordinates 
+    /**
+      * Function to get adress from the latitude and longitude coordinates
       * @function getAddress
       * @param {String} latitude latitude coordinate
       * @param {String} longitude longitude coordinate
-      */  
+      */
     function getAddress(myLatitude, myLongitude) {
-      // Create a geocoder object from Google maps API: 
+      // Create a geocoder object from Google maps API:
       // {@link https://maps.googleapis.com/maps/api/js}
       // @var {object} geocoder
-      let geocoder	= new google.maps.Geocoder();	
+      let geocoder	= new google.maps.Geocoder();
       // Create a location object for latitude and longitude coordinates from Google Maps API:
       // {@link https://maps.googleapis.com/maps/api/js}
       // @var {object} location
@@ -61,9 +61,9 @@ function current_location(){
       // Turn coordinates into an object
       geocoder.geocode({'latLng': location}, function (results, status) {
         // If geocode is successful, pass the address to the location placeholder
-        if(status == google.maps.GeocoderStatus.OK) {					
-          document.getElementById("loc").value= results[0].formatted_address;					
-        } 
+        if(status == google.maps.GeocoderStatus.OK) {
+          document.getElementById("loc").value= results[0].formatted_address;
+        }
       });
     }
   }
@@ -85,7 +85,7 @@ function search(){
         let long= results[0].geometry.location.lng();
         // Combine both latitude and longitude
         let location = `${ lat },${ long }`;
-        console.log(location); 
+        console.log(location);
         // Get radius value input given by user
         let radius=document.getElementById("rad").value;
         console.log(radius);
@@ -94,7 +94,7 @@ function search(){
         localStorage.setItem("longitude", long);
         localStorage.setItem("radius", radius);
         // Call results.html page on click of search
-        window.location.href = "results.html";
+        window.location.href = "../results.html";
       }
     });
   }
@@ -151,7 +151,7 @@ function activities() {
     // console.log(counter);
     // console.log(id);
     // Display activity names in dropdown as checkboxes
-    document.getElementById("checkboxes1").innerHTML +=   
+    document.getElementById("checkboxes1").innerHTML +=
               `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
   }
 }
@@ -167,7 +167,7 @@ document.getElementById("checkboxes1").addEventListener('change', function() {
     if (checkbox1.checked) {
       i+= 1;
     }
-    activity_id = checkbox1.id;   
+    activity_id = checkbox1.id;
     activity_name = checkbox1.value;
     // console.log(activity_id); // Get checked activity id
     // console.log(activity_name); // Get checked activity name
@@ -200,7 +200,7 @@ function interests() {
     // console.log(id);
 
     /** Display interests names in dropdown as checkboxes*/
-    document.getElementById("checkboxes2").innerHTML += 
+    document.getElementById("checkboxes2").innerHTML +=
               `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
   }
 }
@@ -234,7 +234,7 @@ document.getElementById("checkboxes2").addEventListener('change', function() {
 
 // Function to create an Interest filter. If the checkbox(es) for Interests are selected, then display the park results with those attributes.
 // @function activitiesFilter
-// @param {String} activity_id Activity id 
+// @param {String} activity_id Activity id
 function activitiesFilter(activity_id) {
   /** Get ParkInformation such as park name, park description and park links from NPS API */
   const Http = new XMLHttpRequest();
@@ -263,25 +263,25 @@ function activitiesFilter(activity_id) {
       for (let checkbox1 of activitiesCheckbox) {
         if ((checkbox1.checked) && (activityId === activity_id)) {
           /** Display list results that shows park information with corresponding activity ID*/
-          document.getElementById("text").innerHTML += 
-                        `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
+          document.getElementById("text").innerHTML +=
+                        `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` +
                         `<p id= 'parkdescription'> ${ description }</p>`
                         + `<p id= 'parklocation'><b> State: </b>${ state }</p>`;
         }
-            
+
       }
-                
+
     }
 
   }
-   
+
 }
 activitiesFilter();
 
 
 // Function to create an Interest filter. If the checkbox(es) for Interests are selected, then display the park results with those attributes.
 // @function interestFilter
-// @param {String} interests_id Interests id 
+// @param {String} interests_id Interests id
 function interestFilter(interests_id) {
 
   /** Get ParkInformation such as park name, park description and park links from NPS API */
@@ -311,14 +311,14 @@ function interestFilter(interests_id) {
       for (let checkbox2 of interestsCheckbox) {
         if ((checkbox2.checked) && (interestId === interests_id)) {
           /** Display list results that shows park information with corresponding interest ID*/
-          document.getElementById("text").innerHTML += 
-                        `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
+          document.getElementById("text").innerHTML +=
+                        `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` +
                         `<p id= 'parkdescription'> ${ description }</p>`
                         + `<p id= 'parklocation'><b> State: </b>${ state }</p>`;
         }
-            
+
       }
-                
+
     }
   }
 }
@@ -329,7 +329,7 @@ interestFilter();
 // @function parks
 // @param {Number} lat Latitude
 // @param {Number} long Longitude
-// @param {Number} radius Radius 
+// @param {Number} radius Radius
 function parks(lat, long, radius) {
   /** Get ParkInformation such as park name, park description and park links from NPS API */
   const Http = new XMLHttpRequest();
@@ -339,7 +339,7 @@ function parks(lat, long, radius) {
   let res = Http.responseText;
   responseJson = JSON.parse(res);
   let list = (responseJson.data).length;
- 
+
   for (let i = 0; i < list; i++) {
     let fullName = responseJson.data[i].fullName; /** Get Parkname*/
     let id = responseJson.data[i].id; /** Get Parkid*/
@@ -354,14 +354,14 @@ function parks(lat, long, radius) {
     // console.log(distanceBetween);
     if(distanceBetween<=radius){
       /** Display list results that shows park informationID*/
-      document.getElementById("text").innerHTML += 
-                `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
+      document.getElementById("text").innerHTML +=
+                `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` +
                 `<p id= 'parkdescription'> ${ description }</p>`
                 + `<p id= 'parklocation'><b> State: </b>${ state }</p>`
                 + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`;
       // console.log(fullName);
     }
-  }  
+  }
 }
 parks(localStorage.getItem("latitude"), localStorage.getItem("longitude"), localStorage.getItem("radius"));
 
