@@ -19,7 +19,6 @@ function showPosition(position) {
   let long = position.coords.longitude;
   // Combine both latitude and longutide 
   // @var {String} location
-  // 
   let location = `${ lat },${ long }`;
   console.log(location); 
 }
@@ -136,30 +135,40 @@ function reset() {
   document.getElementById("filter").reset();
 }
 
+
 // Function to pull in the activity names from the NPS API and display them as options in the drop down list
-// @function activities
-function activities() {
-  // Get activity data from NPS API
-  const Http = new XMLHttpRequest();
-  const url = `https://developer.nps.gov/api/v1/activities?activitiesCode=acad&api_key=${ nps_token }`;
-  Http.open("GET", url, false);
-  Http.send(null);
-  let res = Http.responseText;
-  responseJson = JSON.parse(res);
-  let list = (responseJson.data).length;
-  for (let i = 0; i < list; i++) {
-    let counter = responseJson.data[i].name; // Get activity name from NPS API
-    id = responseJson.data[i].id; // Get activity id from NPS API
-    // console.log(counter);
-    // console.log(id);
-    // Display activity names in dropdown as checkboxes
-    if (document.getElementById("checkboxes1")) {
-      document.getElementById("checkboxes1").innerHTML +=   
-      `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
+fetch( `https://developer.nps.gov/api/v1/activities?activitiesCode=acad&api_key=${ nps_token }` )
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Status code:' + response.status);
+        return;
+      }
+      
+      // Get activity data from NPS API
+      response.json().then(function(data) {
+        console.log(data);
+        
+        let res = data;
+        let list = (res.data).length;
+        for (let i = 0; i < list; i++) {
+          let counter = res.data[i].name; // Get activity name from NPS API
+          id = res.data[i].id; // Get activity id from NPS API
+
+          // Display activity names in dropdown as checkboxes
+          if (document.getElementById("checkboxes1")) {
+            document.getElementById("checkboxes1").innerHTML +=   
+            `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
+          }
+        }
+      });
     }
-  }
-}
-activities();
+  )
+  .catch(function(err) {
+    console.log(err);
+  });
+ 
+ 
 
 // Function to get the checked checkbox values for activities
 // @function activities_checkbox 
@@ -184,33 +193,44 @@ function activities_checkbox() {
 }
 
 // Function to pull in the interests names from the NPS API and display them as options in the drop down list
-// @function interests
-function interests() {
-  /** Get interests data from NPS API */
-  const Http = new XMLHttpRequest();
-  const url = `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_token }`;
-  Http.open("GET", url, false);
-  Http.send(null);
-  let res = Http.responseText;
-  responseJson = JSON.parse(res);
-  let list = (responseJson.data).length;
-  for (let i = 0; i < list; i++) {
-    let counter = responseJson.data[i].name; /** Get interests name from NPS API */
-    id = responseJson.data[i].id; /** Get interests id from NPS API */
-    // console.log(counter);
-    // console.log(id);
-    if (document.getElementById("checkboxes2")) {
-    /** Display interests names in dropdown as checkboxes*/
-      document.getElementById("checkboxes2").innerHTML += 
-              `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
+fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_token }` )
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Status code:' + response.status);
+        return;
+      }
+      
+      // Get activity data from NPS API
+      response.json().then(function(data) {
+        console.log(data);
+        
+        let res = data;
+        let list = (res.data).length;
+        for (let i = 0; i < list; i++) {
+          let counter = res.data[i].name; /** Get interests name from NPS API */
+          id = res.data[i].id; /** Get interests id from NPS API */
+          
+          // console.log(counter);
+          // console.log(id); 
+          
+          if (document.getElementById("checkboxes2")) {
+          /** Display interests names in dropdown as checkboxes*/
+            document.getElementById("checkboxes2").innerHTML += 
+                    `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
+          }
+        }
+      });
     }
-  }
-}
-interests();
+  )
+  .catch(function(err) {
+    console.log(err);
+  });
+
 
 // Function to get the checked checkbox values for interests 
 // @function interests_checkbox 
-function intrests_checkbox() {
+function interests_checkbox() {
   let interests = document.getElementById("checkboxes2").querySelectorAll('input[type="checkbox"]:checked');
   let j=0;
   let interests_name;
@@ -220,147 +240,230 @@ function intrests_checkbox() {
       j+= 1;
       interests_id = checkbox2.id;
       interests_name = checkbox2.value;
-      interestFilter(interests_id); // Pass the selected interest id to the interestFitler function
+      interestFilter(interests_id); // Pass the selected interest id to the interestFilter function
     }
   }
   if(j>0){
-    document.getElementById("selection2").textContent = `${ j } selected`; /** Display selected number*/
+    document.getElementById("selection2").textContent = `${ j } selected`; /** Display selected number*/ 
   }else{
-    document.getElementById("selection2").textContent = "Select Interests"; /** Display original text if nothing is checked*/
+    document.getElementById("selection2").textContent = "Select Interests"; /** Display original text if nothing is checked*/ 
   }
 }
 
-// Function to create an Interest filter. If the checkbox(es) for Interests are selected, then display the park results with those attributes.
+
+fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_token }` )
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Status code:' + response.status);
+        return;
+      }
+      
+      // Get activity data from NPS API
+      response.json().then(function(data) {
+        console.log(data);
+        
+        let res = data;
+        let list = (res.data).length;
+        for (let i = 0; i < list; i++) {
+          let counter = res.data[i].name; /** Get interests name from NPS API */
+          id = res.data[i].id; /** Get interests id from NPS API */
+          
+          // console.log(counter);
+          // console.log(id); 
+          
+          if (document.getElementById("checkboxes2")) {
+          /** Display interests names in dropdown as checkboxes*/
+            document.getElementById("checkboxes2").innerHTML += 
+                    `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
+          }
+        }
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log(err);
+  });
+
+// Function to create an activities filter. If the checkbox(es) for activities are selected, then display the park results with those attributes.
 // @function activitiesFilter
 // @param {String} activity_id Activity id 
 function activitiesFilter(activity_id) {
-  /** Get ParkInformation such as park name, park description and park links from NPS API */
-  const Http = new XMLHttpRequest();
-  const url = `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }`;
-  Http.open("GET", url, false);
-  Http.send(null);
-  let res = Http.responseText;
-  responseJson = JSON.parse(res);
-  let list = (responseJson.data).length;
-  if(document.getElementById("text")){
-    document.getElementById("text").innerHTML = "";
-  }
-  for (let i = 0; i < list; i++) {
-    let fullName = responseJson.data[i].fullName; /** Get Parkname*/
-    let id = responseJson.data[i].id; /** Get Parkid*/
-    let description = responseJson.data[i].description; /** Get Parkdescription*/
-    let parkLink = responseJson.data[i].url; /** Get Park url that redirects to NPS website*/
-    let latitude = responseJson.data[i].latitude; /** Get Park latitude coordinate*/
-    let longitude = responseJson.data[i].longitude; /** Get Park longitude coordinate*/
-    let state = responseJson.data[i].states; /** Get Park location - state*/
-
-    /** Filter #1 - If certain activities are selected, only display the results that have that attribute. */
-    let activitiesList = responseJson.data[i].activities.length; /** Get activities list for each state park*/
-    for (let j = 0; j < activitiesList; j++) {
-      let activityId = responseJson.data[i].activities[j].id; /** Get activities id for each state park*/
-      if (document.getElementById("checkboxes1")){
-        let activitiesCheckbox = document.getElementById("checkboxes1").querySelectorAll('input[type="checkbox"]:checked');
-        for (let checkbox1 of activitiesCheckbox) {
-          if ((checkbox1.checked) && (activityId === activity_id)) {
-            if(document.getElementById("text")){
-            /** Display list results that shows park information with corresponding activity ID*/
-              document.getElementById("text").innerHTML += 
-                        `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
-                        `<p id= 'parkdescription'> ${ description }</p>`
-                        + `<p id= 'parklocation'><b> State: </b>${ state }</p>`;
-            }
+  fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
+    .then(
+      function(response) {
+        if (response.status !== 200) {
+          console.log('Status code:' + response.status);
+          return;
+        }
+        
+          /** Get ParkInformation such as park name, park description and park links from NPS API */ 
+        response.json().then(function(data) {
+          console.log(data);
+          
+          let res = data;
+          let list = (res.data).length;
+          if(document.getElementById("text")){
+            document.getElementById("text").innerHTML = "";
           }
-        }     
-      }            
-    }
-  } 
+          for (let i = 0; i < list; i++) {
+            let fullName = res.data[i].fullName; /** Get Parkname*/ 
+            let id = res.data[i].id; /** Get Parkid*/ 
+            let description = res.data[i].description; /** Get Parkdescription*/ 
+            let parkLink = res.data[i].url; /** Get Park url that redirects to NPS website*/ 
+            let latitude = res.data[i].latitude; /** Get Park latitude coordinate*/
+            let longitude = res.data[i].longitude; /** Get Park longitude coordinate*/
+            let state = res.data[i].states; /** Get Park location - state*/
+        
+            /** Filter #1 - If certain activities are selected, only display the results that have that attribute. */ 
+            let activitiesList = res.data[i].activities.length; /** Get activities list for each state park*/ 
+            for (let j = 0; j < activitiesList; j++) {
+              let activityId = res.data[i].activities[j].id; /** Get activities id for each state park*/ 
+              if (document.getElementById("checkboxes1")){
+                let activitiesCheckbox = document.getElementById("checkboxes1").querySelectorAll('input[type="checkbox"]:checked');
+                for (let checkbox1 of activitiesCheckbox) {
+                  if ((checkbox1.checked) && (activityId === activity_id)) {
+                    if(document.getElementById("text")){
+                    /** Display list results that shows park information with corresponding activity ID*/ 
+                      document.getElementById("text").innerHTML += 
+                                `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
+                                `<p id= 'parkdescription'> ${ description }</p>`
+                                + `<p id= 'parklocation'><b> State: </b>${ state }</p>`;
+                    }
+                    
+                  }
+                }     
+              }            
+            }
+          } 
+
+        });
+      }
+    )
+    .catch(function(err) {
+      console.log(err);
+    });
 }
 activitiesFilter();
+
 
 // Function to create an Interest filter. If the checkbox(es) for Interests are selected, then display the park results with those attributes.
 // @function interestFilter
 // @param {String} interests_id Interests id 
 function interestFilter(interests_id) {
-  /** Get ParkInformation such as park name, park description and park links from NPS API */
-  const Http = new XMLHttpRequest();
-  const url = `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }`;
-  Http.open("GET", url, false);
-  Http.send(null);
-  let res = Http.responseText;
-  responseJson = JSON.parse(res);
-  let list = (responseJson.data).length;
-  if(document.getElementById("text")){
-    document.getElementById("text").innerHTML = "";
-  }
-  for (let i = 0; i < list; i++) {
-    let fullName = responseJson.data[i].fullName; /** Get Parkname*/
-    let id = responseJson.data[i].id; /** Get Parkid*/
-    let description = responseJson.data[i].description; /** Get Parkdescription*/
-    let parkLink = responseJson.data[i].url; /** Get Park url that redirects to NPS website*/
-    let latitude = responseJson.data[i].latitude; /** Get Park latitude coordinate*/
-    let longitude = responseJson.data[i].longitude; /** Get Park longitude coordinate*/
-    let state = responseJson.data[i].states; /** Get Park location - state*/
-
-    /** Filter #2 - If certain interests are selected, only display the results that have that attribute. */
-    let interestsList = responseJson.data[i].topics.length; /** Get topics/interests list for each state park*/
-    for (let j = 0; j < interestsList; j++) {
-      let interestId = responseJson.data[i].topics[j].id; /** Get topics/interests id for each state park*/
-      if (document.getElementById("checkboxes2")){
-        let interestsCheckbox = document.getElementById("checkboxes2").querySelectorAll('input[type="checkbox"]:checked');
-        for (let checkbox2 of interestsCheckbox) {
-          if ((checkbox2.checked) && (interestId === interests_id)) {
-          /** Display list results that shows park information with corresponding interest ID*/
-            if (document.getElementById("text")){
-              document.getElementById("text").innerHTML += 
-                        `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
-                        `<p id= 'parkdescription'> ${ description }</p>`
-                        + `<p id= 'parklocation'><b> State: </b>${ state }</p>`;
+  fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
+    .then(
+      function(response) {
+        if (response.status !== 200) {
+          console.log('Status code:' + response.status);
+          return;
+        }
+        
+        /** Get ParkInformation such as park name, park description and park links from NPS API */ 
+        response.json().then(function(data) {
+          console.log(data);
+          
+          let res = data;
+          let list = (res.data).length;
+          if(document.getElementById("text")){
+            document.getElementById("text").innerHTML = "";
+          }
+          for (let i = 0; i < list; i++) {
+            let fullName = res.data[i].fullName; /** Get Parkname*/ 
+            let id = res.data[i].id; /** Get Parkid*/ 
+            let description = res.data[i].description; /** Get Parkdescription*/ 
+            let parkLink = res.data[i].url; /** Get Park url that redirects to NPS website*/ 
+            let latitude = res.data[i].latitude; /** Get Park latitude coordinate*/
+            let longitude = res.data[i].longitude; /** Get Park longitude coordinate*/
+            let state = res.data[i].states; /** Get Park location - state*/
+        
+            /** Filter #2 - If certain interests are selected, only display the results that have that attribute. */ 
+            let interestsList = res.data[i].topics.length; /** Get topics/interests list for each state park*/ 
+            for (let j = 0; j < interestsList; j++) {
+              let interestId = res.data[i].topics[j].id; /** Get topics/interests id for each state park*/ 
+              if (document.getElementById("checkboxes2")){ 
+                let interestsCheckbox = document.getElementById("checkboxes2").querySelectorAll('input[type="checkbox"]:checked');
+                for (let checkbox2 of interestsCheckbox) {
+                  if ((checkbox2.checked) && (interestId === interests_id)) {
+                  /** Display list results that shows park information with corresponding interest ID*/ 
+                    if (document.getElementById("text")){ 
+                      document.getElementById("text").innerHTML += 
+                                `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
+                                `<p id= 'parkdescription'> ${ description }</p>`
+                                + `<p id= 'parklocation'><b> State: </b>${ state }</p>`;
+                    }
+                  }
+                }      
+              }           
             }
           }
-        }      
-      }           
-    }
-  }
+
+        });
+      }
+    )
+    .catch(function(err) {
+      console.log(err);
+    });
 }
 interestFilter();
 
-// Function to pull in the Park results from NPS website and show as list results
+
+// Function to pull in the Park results from NPS website and show as list results with radius filter
 // @function parks
 // @param {Number} lat Latitude
 // @param {Number} long Longitude
 // @param {Number} radius Radius 
 function parks(lat, long, radius) {
-  /** Get ParkInformation such as park name, park description and park links from NPS API */
-  const Http = new XMLHttpRequest();
-  const url = `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }`;
-  Http.open("GET", url, false);
-  Http.send(null);
-  let res = Http.responseText;
-  responseJson = JSON.parse(res);
-  let list = (responseJson.data).length;
- 
-  for (let i = 0; i < list; i++) {
-    let fullName = responseJson.data[i].fullName; /** Get Parkname*/
-    let id = responseJson.data[i].id; /** Get Parkid*/
-    let description = responseJson.data[i].description; /** Get Parkdescription*/
-    let parkLink = responseJson.data[i].url; /** Get Park url that redirects to NPS website*/
-    let latitude = responseJson.data[i].latitude; /** Get Park latitude coordinate*/
-    let longitude = responseJson.data[i].longitude; /** Get Park longitude coordinate*/
-    let state = responseJson.data[i].states; /** Get Park location - state*/
+  /** Get ParkInformation such as park name, park description and park links from NPS API */ 
+  fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
+    .then(
+      function(response) {
+        if (response.status !== 200) {
+          console.log('Status code:' + response.status);
+          return;
+        }
+        
+        /** Get ParkInformation such as park name, park description and park links from NPS API */ 
+        response.json().then(function(data) {
+          console.log(data);
+          
+          let res = data;
+          let list = (res.data).length;
+          if(document.getElementById("text")){
+            document.getElementById("text").innerHTML = "";
+          }
+          for (let i = 0; i < list; i++) {
+            let fullName = res.data[i].fullName; /** Get Parkname*/ 
+            let id = res.data[i].id; /** Get Parkid*/ 
+            let description = res.data[i].description; /** Get Parkdescription*/ 
+            let parkLink = res.data[i].url; /** Get Park url that redirects to NPS website*/ 
+            let latitude = res.data[i].latitude; /** Get Park latitude coordinate*/
+            let longitude = res.data[i].longitude; /** Get Park longitude coordinate*/
+            let state = res.data[i].states; /** Get Park location - state*/
 
-    // compare lat and long with radius
-    let distanceBetween = distance(latitude, longitude, lat, long);
-    if(distanceBetween<=radius){
-      /** Display list results that shows park informationID*/
-      document.getElementById("text").innerHTML += 
-                `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
-                `<p id= 'parkdescription'> ${ description }</p>`
-                + `<p id= 'parklocation'><b> State: </b>${ state }</p>`
-                + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`;
+          // compare lat and long with radius
+          let distanceBetween = distance(latitude, longitude, lat, long);
+          if(distanceBetween<=radius){
+             if (document.getElementById("text")){ 
+             /** Display list results that shows park informationID*/ 
+             document.getElementById("text").innerHTML += 
+                      `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
+                      `<p id= 'parkdescription'> ${ description }</p>`
+                      + `<p id= 'parklocation'><b> State: </b>${ state }</p>`
+                      + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`;
+             }
+          }
+        } 
+      });
     }
-  }  
+  )
+  .catch(function(err) {
+    console.log(err);
+  });
 }
+
 parks(localStorage.getItem("latitude"), localStorage.getItem("longitude"), localStorage.getItem("radius"));
+
 
 // Function to calculate the distance based on radius entered
 // @function distance
@@ -406,10 +509,13 @@ function setFunctions() {
   if(document.getElementById("intr")){
   document.getElementById("intr").addEventListener("click", showCheckboxes2, false);
   }
+  
   if(document.getElementById("checkboxes1")){
   document.getElementById("checkboxes1").addEventListener('change', activities_checkbox, false);
   }
+
   if(document.getElementById("checkboxes2")){
-  document.getElementById("checkboxes2").addEventListener('change', intrests_checkbox, false);
+  document.getElementById("checkboxes2").addEventListener('change', interests_checkbox, false);
   }
+
 }
