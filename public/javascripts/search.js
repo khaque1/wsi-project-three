@@ -444,12 +444,14 @@ function parks(lat, long, radius) {
           // compare lat and long with radius
           let distanceBetween = distance(latitude, longitude, lat, long);
           if(distanceBetween<=radius){
-            /** Display list results that shows park informationID*/ 
-            document.getElementById("text").innerHTML += 
+             if (document.getElementById("text")){ 
+             /** Display list results that shows park informationID*/ 
+             document.getElementById("text").innerHTML += 
                       `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
                       `<p id= 'parkdescription'> ${ description }</p>`
                       + `<p id= 'parklocation'><b> State: </b>${ state }</p>`
                       + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`;
+             }
           }
         } 
       });
