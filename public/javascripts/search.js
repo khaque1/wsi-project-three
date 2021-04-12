@@ -137,7 +137,7 @@ function reset() {
 
 
 // Function to pull in the activity names from the NPS API and display them as options in the drop down list
-fetch( `https://developer.nps.gov/api/v1/activities?activitiesCode=acad&api_key=${ nps_token }` )
+fetch( `https://developer.nps.gov/api/v1/activities?&api_key=${ nps_token }` )
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -158,7 +158,7 @@ fetch( `https://developer.nps.gov/api/v1/activities?activitiesCode=acad&api_key=
           // Display activity names in dropdown as checkboxes
           if (document.getElementById("checkboxes1")) {
             document.getElementById("checkboxes1").innerHTML +=   
-            `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
+            `<input type='checkbox' id='${ id }' value = '${ counter }'/> ${ counter } <br />`;
           }
         }
       });
@@ -193,7 +193,7 @@ function activities_checkbox() {
 }
 
 // Function to pull in the interests names from the NPS API and display them as options in the drop down list
-fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_token }` )
+fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }` )
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -201,7 +201,7 @@ fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_t
         return;
       }
       
-      // Get activity data from NPS API
+      // Get interest data from NPS API
       response.json().then(function(data) {
         console.log(data);
         
@@ -217,7 +217,7 @@ fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_t
           if (document.getElementById("checkboxes2")) {
           /** Display interests names in dropdown as checkboxes*/
             document.getElementById("checkboxes2").innerHTML += 
-                    `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
+                    `<input type='checkbox' id='${ id }' value = '${ counter }'/> ${ counter } <br />`;
           }
         }
       });
@@ -251,45 +251,11 @@ function interests_checkbox() {
 }
 
 
-fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_token }` )
-  .then(
-    function(response) {
-      if (response.status !== 200) {
-        console.log('Status code:' + response.status);
-        return;
-      }
-      
-      // Get activity data from NPS API
-      response.json().then(function(data) {
-        console.log(data);
-        
-        let res = data;
-        let list = (res.data).length;
-        for (let i = 0; i < list; i++) {
-          let counter = res.data[i].name; /** Get interests name from NPS API */
-          id = res.data[i].id; /** Get interests id from NPS API */
-          
-          // console.log(counter);
-          // console.log(id); 
-          
-          if (document.getElementById("checkboxes2")) {
-          /** Display interests names in dropdown as checkboxes*/
-            document.getElementById("checkboxes2").innerHTML += 
-                    `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
-          }
-        }
-      });
-    }
-  )
-  .catch(function(err) {
-    console.log(err);
-  });
-
 // Function to create an activities filter. If the checkbox(es) for activities are selected, then display the park results with those attributes.
 // @function activitiesFilter
 // @param {String} activity_id Activity id 
 function activitiesFilter(activity_id) {
-  fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
+  fetch( `https://developer.nps.gov/api/v1/parks?limit=466&api_key=${ nps_token }` )
     .then(
       function(response) {
         if (response.status !== 200) {
@@ -351,7 +317,7 @@ activitiesFilter();
 // @function interestFilter
 // @param {String} interests_id Interests id 
 function interestFilter(interests_id) {
-  fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
+  fetch( `https://developer.nps.gov/api/v1/parks?limit=466&api_key=${ nps_token }` )
     .then(
       function(response) {
         if (response.status !== 200) {
@@ -415,7 +381,7 @@ interestFilter();
 // @param {Number} radius Radius 
 function parks(lat, long, radius) {
   /** Get ParkInformation such as park name, park description and park links from NPS API */ 
-  fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
+  fetch( `https://developer.nps.gov/api/v1/parks?limit=466&api_key=${ nps_token }` )
     .then(
       function(response) {
         if (response.status !== 200) {
