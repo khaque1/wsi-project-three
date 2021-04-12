@@ -504,11 +504,11 @@ function setFunctions() {
   }
   
   if(document.getElementById("checkboxes1")){
-  document.getElementById("checkboxes1").addEventListener('click', ai_checkboxes, false);
+  document.getElementById("checkboxes1").addEventListener('change', ai_checkboxes, false);
   }
 
   if(document.getElementById("checkboxes2")){
-  document.getElementById("checkboxes2").addEventListener('click', ai_checkboxes, false);
+  document.getElementById("checkboxes2").addEventListener('change', ai_checkboxes, false);
   }
 
 }
