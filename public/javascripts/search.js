@@ -1,4 +1,3 @@
-// Function to get the latitude and longitude positions  
 // Function to calculate current geo location of the user
 // @function current_location
 function current_location(){
