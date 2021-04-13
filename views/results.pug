@@ -1,0 +1,82 @@
+// Start of HTML document
+doctype html
+html(lang='en')
+  // Language is English
+  // Start of head
+  head
+    title Project 3_Beta Release
+    // Document title
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' type='text/css' href='stylesheets/reset.css')
+    // Link reset CSS file
+    link(rel='stylesheet' type='text/css' href='stylesheets/common.css')
+    // Link common CSS file
+    link(rel='stylesheet' type='text/css' href='stylesheets/results.css')
+    // Link results CSS file
+    script(type='text/javascript' src='config.js')
+    // Link config JS file
+    script(type='text/javascript' src='javascripts/search.js')
+    // Link seacrch JS file
+    script(type='text/javascript' src='javascripts/map.js')
+    // Link map JS file
+  // End of head
+  // Start of body
+  body
+    // Start of page header
+    header.head
+      h1 National Park Finder
+      // Page title
+    // End of page header
+    // Start of Main for filters
+    main.filters
+      // Start of Form for filters
+      form#filter
+        // Start of section for filters- activities and interests
+        section.filter2
+          // Start of fieldset for activities filter
+          fieldset.multipleSelection1
+            // Label for activities
+            label Activities
+            // Start of fieldset for select activities
+            fieldset#activ.selectBox1
+              select
+                option#selection1(name='activities' value='SelectActivities') Select Activities
+              fieldset.overSelect1
+            // End of fieldset for select activities
+            // Start of fieldset for checkbox dropdown options for activities filter
+            fieldset#checkboxes1.container
+            // End of fieldset for checkbox dropdown options for activities filter
+          // End of fieldset for activities filter
+          // Start of fieldset for interests filter
+          fieldset.multipleSelection2
+            // Label for interests
+            label Interests
+            // Start of fieldset for select interests
+            fieldset#intr.selectBox2
+              select
+                option#selection2(name='interests' value='SelectInterests') Select Interests
+              fieldset.overSelect2
+            // End of fieldset for select interests
+            // Start of fieldset for checkbox dropdown options for interests filter
+            fieldset#checkboxes2.container
+            // End of fieldset for checkbox dropdown options for activities filter
+          // End of fieldset for interests filter
+        // End of section for filters- activities and interests
+      // End of Form for filters
+    // End of Main of filters
+    // Start of Main for results- map and list
+    main.results
+      // Start of section for map
+      section.map
+        fieldset#map
+      // End of section for map
+      // Start of section for list
+      section.list
+        // Start of article for park details in list
+        article#text
+        // End of article for park details in list
+      // End of section for list
+    // End of main
+  // End of body
+// End of HTML document
