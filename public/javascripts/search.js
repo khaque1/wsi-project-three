@@ -126,7 +126,7 @@ function resetResults() {
 
 
 // Function to pull in the activity names from the NPS API and display them as options in the drop down list
-fetch( `https://developer.nps.gov/api/v1/activities?&api_key=${ nps_token }` )
+fetch( `https://developer.nps.gov/api/v1/activities?limit=40&&api_key=${ nps_token }` )
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -231,7 +231,7 @@ function ai_checkboxes() {
 }
 
 
-fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_token }` )
+fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }` )
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -272,7 +272,7 @@ fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_t
 */
 function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
   resetResults();
-  fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
+  fetch( `https://developer.nps.gov/api/v1/parks?limit=466&api_key=${ nps_token }` )
     .then(
       function(response) {
         if (response.status !== 200) {
@@ -345,7 +345,7 @@ function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
 */
 function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
   
-  fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
+  fetch( `https://developer.nps.gov/api/v1/parks?limit=466&api_key=${ nps_token }` )
     .then(
       function(response) {
         if (response.status !== 200) {
