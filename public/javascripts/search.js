@@ -1,5 +1,6 @@
-// Function to calculate current geo location of the user
-// @function current_location
+/** Function to calculate current geo location of the user
+* @function current_location
+*/
 function current_location(){
   // Call show position function to get the coordinates
   if (navigator.geolocation) {
@@ -15,22 +16,24 @@ function current_location(){
     console.log("In search.js, location is: ", location); 
     // Call get address function to calculate address based on latitude and longitude coordinates
     getAddress(lat, long);
-    /**  
+      /**  
       * Function to get adress from the latitude and longitude coordinates 
       * @function getAddress
       * @param {String} latitude latitude coordinate
       * @param {String} longitude longitude coordinate
       */  
     function getAddress(myLatitude, myLongitude) {
-      // Create a geocoder object from Google maps API: 
-      // {@link https://maps.googleapis.com/maps/api/js}
-      // @var {object} geocoder
+      /** Create a geocoder object from Google maps API:
+      * {@link https://maps.googleapis.com/maps/api/js}
+      * @var {object} geocoder
+      */
       let geocoder	= new google.maps.Geocoder();	
-      // Create a location object for latitude and longitude coordinates from Google Maps API:
-      // {@link https://maps.googleapis.com/maps/api/js}
-      // @var {object} location
-      // @param {String} latitude latitude coordinate
-      // @param {String} longitude longitude coordinate
+      /**  Create a location object for latitude and longitude coordinates from Google Maps API:
+      * {@link https://maps.googleapis.com/maps/api/js}
+      * @var {object} location
+      * @param {String} latitude latitude coordinate
+      * @param {String} longitude longitude coordinate
+      */
       let location	= new google.maps.LatLng(myLatitude, myLongitude);
       // Turn coordinates into an object
       geocoder.geocode({'latLng': location}, function (results, status) {
@@ -43,9 +46,9 @@ function current_location(){
   }
 }
 
-
-// Function to calculate geo location that shows latitude and longitude positions of the based on user input for location
-// @function search
+/**  Function to calculate geo location that shows latitude and longitude positions of the based on user input for location
+* @function search
+*/
 function search(){
   if(document.getElementById("loc").value.length == 0) {
     alert("Please fill out the required field to proceed further!");
@@ -70,7 +73,7 @@ function search(){
         localStorage.setItem("longitude", long);
         localStorage.setItem("radius", radius);
         // Call results.html page on click of search
-        window.location.href = "../public/results.html";
+        window.location.href = "../results";
       }
     });
   }
@@ -79,8 +82,9 @@ function search(){
 
 let expanded = false;
 
-// Function to expand the checkbox dropdown for activities filter
-// @function showCheckboxes1
+/**  Function to exapnd the checbox dropdown for activities filter
+* @function showCheckboxes1
+*/
 function showCheckboxes1() {
   let checkboxes = document.getElementById("checkboxes1");
   if (!expanded) {
@@ -92,8 +96,9 @@ function showCheckboxes1() {
   }
 }
 
-// Function to expand the checkbox dropdown for interests filter
-// @function showCheckboxes2
+/** Function to exapnd the checbox dropdown for interests filter
+* @function showCheckboxes2
+*/
 function showCheckboxes2() {
   let checkboxes = document.getElementById("checkboxes2");
   if (!expanded) {
@@ -105,13 +110,16 @@ function showCheckboxes2() {
   }
 }
 
-// Function to reset the inputs of filter parameters
-// @function reset
+/**  Function to reset the inputs of filter parameters
+* @function reset
+*/
 function reset() {
   document.getElementById("filter").reset();
 }
 
-// Function to reset the results printed out
+/** Function to reset the results printed out
+* @function resetResults
+*/ 
 function resetResults() {
   document.getElementById("text").innerHTML = "<p> </p>";
 }
@@ -159,7 +167,7 @@ fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_t
         return;
       }
       
-      // Get activity data from NPS API
+      // Get interests data from NPS API
       response.json().then(function(data) {
         console.log(data);
         
@@ -169,11 +177,8 @@ fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_t
           let counter = res.data[i].name; /** Get interests name from NPS API */
           id = res.data[i].id; /** Get interests id from NPS API */
           
-          // console.log(counter);
-          // console.log(id); 
-          
+          // Display interests names in dropdown as checkboxes
           if (document.getElementById("checkboxes2")) {
-          /** Display interests names in dropdown as checkboxes*/
             document.getElementById("checkboxes2").innerHTML += 
                     `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
           }
@@ -185,8 +190,9 @@ fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_t
     console.log(err);
   });
 
-// Function to get the checked checkbox values for activities
-// @function activities_checkbox 
+/** Function to get the checked checkbox values for activities and interests
+* @function ai_checkbox 
+*/
 function ai_checkboxes() {
   resetResults();
   let resultsCheckDuplicates = new Array();
@@ -260,9 +266,10 @@ fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_t
   });
 
 
-// Function to create an activities filter. If the checkbox(es) for activities are selected, then display the park results with those attributes.
-// @function activitiesFilter
-// @param {String} activity_id Activity id 
+/**  Function to create an activities filter. If the checkbox(es) for activities are selected, then display the park results with those attributes.
+* @function activitiesFilter
+* @param {String} activity_id Activity id 
+*/
 function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
   resetResults();
   fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
@@ -332,9 +339,10 @@ function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
 }
 
 
-// Function to create an Interest filter. If the checkbox(es) for Interests are selected, then display the park results with those attributes.
-// @function interestFilter
-// @param {String} interests_id Interests id 
+/**  Function to create an Interest filter. If the checkbox(es) for Interests are selected, then display the park results with those attributes.
+* @function interestFilter
+* @param {String} interests_id Interests id 
+*/
 function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
   
   fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
@@ -401,12 +409,12 @@ function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
     });
 }
 
-
-// Function to pull in the Park results from NPS website and show as list results with radius filter
-// @function parks
-// @param {Number} lat Latitude
-// @param {Number} long Longitude
-// @param {Number} radius Radius 
+/** Function to pull in the Park results from NPS website and show as list results
+* @function parks
+* @param {Number} lat Latitude
+* @param {Number} long Longitude
+* @param {Number} radius Radius
+*/
 function parks(lat, long, radius) {
   /** Get ParkInformation such as park name, park description and park links from NPS API */ 
   fetch( `https://developer.nps.gov/api/v1/parks?&api_key=${ nps_token }` )
@@ -457,13 +465,13 @@ function parks(lat, long, radius) {
 }
 parks(localStorage.getItem("latitude"), localStorage.getItem("longitude"), localStorage.getItem("radius"));
 
-
-// Function to calculate the distance based on radius entered
-// @function distance
-// @param {Number} lat1 Park latitude coordinate
-// @param {Number} lng1 Park longitude coordinate
-// @param {Number} lat2 User latitude coordinate
-// @param {Number} lng2 User longitude coordinate
+/**  Function to calculate the distance based on radius entered
+* @function distance
+* @param {Number} lat1 Park latitude coordinate
+* @param {Number} lng1 Park longitude coordinate
+* @param {Number} lat2 User latitude coordinate
+* @param {Number} lng2 User longitude coordinate
+*/
 function distance(lat1, lng1, lat2, lng2) {
   function deg2rad(deg){
     return deg * (Math.PI/180);
@@ -484,8 +492,9 @@ function distance(lat1, lng1, lat2, lng2) {
 
 window.addEventListener("load", setFunctions, false);
 
-// Function to call the event listeners from both the html pages
-// @function setFunctions
+/** Function to call the event listeners from both the html pages
+* @function setFunctions
+*/
 function setFunctions() {
   if(document.getElementById("currlocation")){
     document.getElementById("currlocation").addEventListener("click",current_location, false);
