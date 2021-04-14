@@ -11,7 +11,7 @@ Be sure to FORK and CLONE a copy from GitHub account.
 ## To Run the Project:
 
 * Please ensure you have the necessary dependencies installed
-* In your project directory, run `node index.js`
+* In your project directory, run `node app.js`
 * Then, you are prompted to open [http://localhost:3000](http://localhost:3000) in the web browser of your choice
 
 # National Park Finder

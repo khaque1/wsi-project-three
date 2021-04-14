@@ -1,0 +1,83 @@
+// Start of HTML document
+doctype html
+html(lang='en')
+  // Language is English
+  // Start of head
+  head
+    title Project 3_Beta Release
+    // Document title
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' type='text/css' href='stylesheets/reset.css')
+    // Link reset CSS file
+    link(rel='stylesheet' type='text/css' href='stylesheets/common.css')
+    // Link common CSS file
+    link(rel='stylesheet' type='text/css' href='stylesheets/screen.css')
+    // Link screen CSS file
+    script(type='text/javascript' src='config.js')
+    // Link config JS file
+    script(type='text/javascript' src='javascripts/search.js')
+    // Link search JS file
+  // End of head
+  // Start of body
+  body
+    // Start of page header
+    header.head
+      h1 National Park Finder
+      // Page title
+    // End of page header
+    // Start of Main
+    main.filters
+      // Start of Form for filters
+      form#filter.form(autocomplete='off')
+        // Start of section for filters- location and radius
+        section.filter1
+          // Label for location filter
+          label(for='location') Where do you want to go?
+          // Tooltip to help user what to input
+          fieldset#help.tooltip
+            | Help
+            span.tooltiptext Please enter one of the following:
+              br
+              | 1. City - Ex:Chicago, Washington
+              br
+              | 2. Zipcode - Ex:60640, 46582
+              br
+              | 3.Park Name - Ex:Yosemite National Park, Grand Canyon National Park
+          // Example text for the location placeholder
+          input#loc(placeholder='Grand Canyon National Park *' type='text' value='' required)
+          // Button to get the current location of user on click
+          button#currlocation.location Get Current Location
+          // Start of fieldset for progressive disclosure of radius filter
+          fieldset.form-group
+            // Label for radius filter
+            label(for='radius') How far do you want to travel?
+            // Start of select Dropdown options for radius
+            select#rad
+              option(value='10') < 10 miles
+              option(value='25') < 25 miles
+              option(value='50' selected) < 50 miles
+              // Defaulted to <50 miles
+              option(value='75') < 75 miles
+              option(value='100') < 100 miles
+              option(value='125') < 125 miles
+              option(value='150') < 150 miles
+              option(value='175') < 175 miles
+              option(value='200') < 200 miles
+              option(value='225') < 225 miles
+              option(value='250') < 250 miles
+              option(value='275') < 275 miles
+              option(value='300') < 300 miles
+              option(value='10000') > 300 miles
+            // End of select Dropdown options for radius
+          // End of fieldset for progressive disclosure of radius filter
+        // End of section for filters- location and radius
+      // End of Form for filters
+      // Start of section for buttons
+      section.buttons
+        button#search.button1 Search
+        button#reset.button2 Clear
+      // End of section for buttons
+    // End of Main
+  // End of body
+// End of HTML document
