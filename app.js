@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var port = 3000;
+var port = process.env.port || 3000;
 
 var indexRouter = require('./routes/index');
 var resultsRouter = require('./routes/results');
@@ -8,6 +8,7 @@ var resultsRouter = require('./routes/results');
 var app = express();
 
 // view engine setup
+app.set("port",port);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
