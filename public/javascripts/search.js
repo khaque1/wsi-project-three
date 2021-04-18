@@ -196,6 +196,8 @@ fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }`
 function ai_checkboxes() {
   resetResults();
   let resultsCheckDuplicates = new Array();
+  //let locations = [];
+  //localStorage.setItem("locations", JSON.stringify(locations));
 
   let activities = document.getElementById("checkboxes1").querySelectorAll('input[type="checkbox"]:checked');
   let i;
@@ -230,8 +232,8 @@ function ai_checkboxes() {
   }
 }
 
-
-fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }` )
+/*
+fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_token }` )
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -247,14 +249,14 @@ fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }`
         let list = (res.data).length;
         for (let i = 0; i < list; i++) {
           let counter = res.data[i].name; /** Get interests name from NPS API */
-          id = res.data[i].id; /** Get interests id from NPS API */
+/*          id = res.data[i].id; /** Get interests id from NPS API */
           
           // console.log(counter);
           // console.log(id); 
           
-          if (document.getElementById("checkboxes2")) {
+/*          if (document.getElementById("checkboxes2")) {
           /** Display interests names in dropdown as checkboxes*/
-            document.getElementById("checkboxes2").innerHTML += 
+/*            document.getElementById("checkboxes2").innerHTML += 
                     `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
           }
         }
@@ -263,7 +265,7 @@ fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }`
   )
   .catch(function(err) {
     console.log(err);
-  });
+  });*/
 
 
 /**  Function to create an activities filter. If the checkbox(es) for activities are selected, then display the park results with those attributes.
@@ -307,14 +309,16 @@ function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
                   if ((checkbox1.checked) && (activityId === activity_id)) {
                   //check if it can be added to the array (not a duplicated)
                     if(resultsCheckDuplicates.includes(id) == false){
-                      resultsCheckDuplicates.push(id);
-
                       /** Display list results that shows park information with corresponding interest ID*/ 
                       let lat = localStorage.getItem("latitude"); 
                       let long = localStorage.getItem("longitude"); 
                       let radius = localStorage.getItem("radius"); 
                       let distanceBetween = distance(latitude, longitude, lat, long);
                       if(distanceBetween<=radius){
+                        resultsCheckDuplicates.push(id);
+                        //locations = JSON.parse(localStorage.getItem("locations"));
+                        //locations.push({ lat: latitude, lng: longitude});
+                        //localStorage.setItem("locations", JSON.stringify(locations));
                         if (document.getElementById("text")){
                           document.getElementById("text").innerHTML += 
                                     `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
@@ -379,13 +383,16 @@ function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
                   if ((checkbox2.checked) && (interestId === interests_id)) {
                     //check if it can be added to the array (not a duplicated)
                     if(resultsCheckDuplicates.includes(id) == false){
-                      resultsCheckDuplicates.push(id);
                       /** Display list results that shows park information with corresponding interest ID*/ 
                       let lat = localStorage.getItem("latitude"); 
                       let long = localStorage.getItem("longitude"); 
                       let radius = localStorage.getItem("radius"); 
                       let distanceBetween = distance(latitude, longitude, lat, long);
                       if(distanceBetween<=radius){
+                        resultsCheckDuplicates.push(id);
+                        //locations = JSON.parse(localStorage.getItem("locations"));
+                        //locations.push({ lat: latitude, lng: longitude});
+                        //localStorage.setItem("locations", JSON.stringify(locations));
                         if (document.getElementById("text")){
                           document.getElementById("text").innerHTML += 
                                     `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
@@ -424,7 +431,6 @@ function parks(lat, long, radius) {
           console.log('Status code:' + response.status);
           return;
         }
-        
         /** Get ParkInformation such as park name, park description and park links from NPS API */ 
         response.json().then(function(data) {
           console.log(data);
@@ -442,13 +448,16 @@ function parks(lat, long, radius) {
             let latitude = res.data[i].latitude; /** Get Park latitude coordinate*/
             let longitude = res.data[i].longitude; /** Get Park longitude coordinate*/
             let state = res.data[i].states; /** Get Park location - state*/
-
             // compare lat and long with radius
             let distanceBetween = distance(latitude, longitude, lat, long);
             if(distanceBetween<=radius){
-              if (document.getElementById("text")){ 
-              /** Display list results that shows park informationID*/ 
-              document.getElementById("text").innerHTML += 
+              locations = JSON.parse(localStorage.getItem("locations"));
+              locations.push({lat: latitude, lng: longitude});
+              console.log("In search.js, parks() LOCATIONS ", locations);
+              localStorage.setItem("locations", JSON.stringify(locations));
+              if (document.getElementById("text")){
+                /** Display list results that shows park informationID*/ 
+                document.getElementById("text").innerHTML += 
                       `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
                       `<p id= 'parkdescription'> ${ description }</p>`
                       + `<p id= 'parklocation'><b> State: </b>${ state }</p>`

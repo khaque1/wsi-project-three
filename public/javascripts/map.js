@@ -51,25 +51,38 @@ function initMap() {
     });
   }
   
-  // const markers = locations.map((location, i) => {
-  //   return new google.maps.Marker({
-  //     position: location,
-  //     icon: iconBase + "pink-blank.png",
-  //     map: map,
-  //   });
-  // });
+  function setMarkers() {
+    let iconBase = "http://maps.google.com/mapfiles/kml/paddle/";
+    let locations = JSON.parse(localStorage.getItem("locations"));
+    //let markers = new Array();
+    console.log("In map.js, setMarkers() ", locations);
+    for (let i = 0; i < locations.length; i++) {
+      let marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+        icon: iconBase + "pink-blank.png",
+        map: map,
+      });
+      //markers.push(marker.position);
+    }
   
-  // const locations = [
-  // { lat: 41.80, lng: -87.77 },
-  // { lat: 41.82, lng: -87.61 },
-  // { lat: 40.9, lng: -87.6 },
-  // { lat: 41.65, lng: -87.5 },
-  // { lat: 41.84, lng: -87.8 },
-  // { lat: 41.99, lng: -87.9 },
-  // { lat: 41.89, lng: -88 },
-  // { lat: 41.75, lng: -88.626893 },
-  // { lat: 41.7, lng: -87.9 },
-  // { lat: 41.6, lng: -87.5 },
-  // { lat: 42.9, lng: -87.3 },
-  // ];
+    //markers.push(map.center);
   
+    /*
+    let bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < markers.length; i++) {
+     bounds.extend(markers[i]);
+    }
+    
+    map.fitBounds(bounds);*/
+  
+  }
+  
+  window.addEventListener("load", init, false);
+
+  // Function to call the event listeners from both the html pages
+  // @function setFunctions
+  function init() {
+    let locations = new Array();
+    localStorage.setItem("locations", JSON.stringify(locations));
+    setMarkers();
+  }
