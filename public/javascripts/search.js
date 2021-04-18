@@ -258,6 +258,10 @@ function ai_checkboxes() {
   }else if (j<=0){
     document.getElementById("selection2").textContent = "Select Interests"; /** Display original text if nothing is checked*/ 
   }
+
+  if(i<=0 && j<=0){
+    parks(localStorage.getItem("latitude"), localStorage.getItem("longitude"), localStorage.getItem("radius"));
+  }
 }
 
 
