@@ -1,5 +1,5 @@
-// Start of HTML document
 doctype html
+// Start of HTML document
 html(lang='en')
   // Language is English
   // Start of head
@@ -16,7 +16,7 @@ html(lang='en')
     // Link screen CSS file
     script(type='text/javascript' src='config.js')
     // Link config JS file
-    script(type='text/javascript' src='javascripts/search.js')
+    script(defer, type='text/javascript' src='javascripts/search.js')
     // Link search JS file
   // End of head
   // Start of body
@@ -75,8 +75,8 @@ html(lang='en')
       // End of Form for filters
       // Start of section for buttons
       section.buttons
-        a(href='../results')
-          button#search.button1 Search
+        //a(href='../results')
+        button#search.button1 Search
         button#reset.button2 Clear
       // End of section for buttons
     // End of Main
