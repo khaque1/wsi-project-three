@@ -4,7 +4,7 @@
 function setMarkers() {
   let iconBase = "http://maps.google.com/mapfiles/kml/paddle/";
   let locations = JSON.parse(localStorage.getItem("locations"));
-  //let markers = new Array();
+  let markers = new Array();
   console.log("In map.js, setMarkers() ", locations);
   for (let i = 0; i < locations.length; i++) {
     let marker = new google.maps.Marker({
@@ -12,18 +12,18 @@ function setMarkers() {
       icon: iconBase + "pink-blank.png",
       map: map,
     });
-    //markers.push(marker.position);
+    markers.push(marker.position);
   }
 
-  //markers.push(map.center);
+  markers.push(map.center);
 
-  /*
+  
   let bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < markers.length; i++) {
     bounds.extend(markers[i]);
   }
   
-  map.fitBounds(bounds);*/
+  map.fitBounds(bounds);
 }
 
 /** Function to calculate current geo location of the user
