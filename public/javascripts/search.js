@@ -11,13 +11,13 @@ function current_location(){
     let lat = position.coords.latitude;
     // Get longitude coordinate
     let long = position.coords.longitude;
-    // Combine both latitude and longutide
+    // Combine both latitude and longitude
     let location = `${ lat },${ long }`;
     console.log("In search.js, location is: ", location); 
     // Call get address function to calculate address based on latitude and longitude coordinates
     getAddress(lat, long);
       /**  
-      * Function to get adress from the latitude and longitude coordinates 
+      * Function to get address from the latitude and longitude coordinates 
       * @function getAddress
       * @param {String} latitude latitude coordinate
       * @param {String} longitude longitude coordinate
@@ -231,41 +231,6 @@ function ai_checkboxes() {
     document.getElementById("selection2").textContent = "Select Interests"; /** Display original text if nothing is checked*/ 
   }
 }
-
-/*
-fetch( `https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=${ nps_token }` )
-  .then(
-    function(response) {
-      if (response.status !== 200) {
-        console.log('Status code:' + response.status);
-        return;
-      }
-      
-      // Get activity data from NPS API
-      response.json().then(function(data) {
-        console.log(data);
-        
-        let res = data;
-        let list = (res.data).length;
-        for (let i = 0; i < list; i++) {
-          let counter = res.data[i].name; /** Get interests name from NPS API */
-/*          id = res.data[i].id; /** Get interests id from NPS API */
-          
-          // console.log(counter);
-          // console.log(id); 
-          
-/*          if (document.getElementById("checkboxes2")) {
-          /** Display interests names in dropdown as checkboxes*/
-/*            document.getElementById("checkboxes2").innerHTML += 
-                    `<input type='checkbox' id='${ id }' value = '${ counter }'/>${ counter } <br />`;
-          }
-        }
-      });
-    }
-  )
-  .catch(function(err) {
-    console.log(err);
-  });*/
 
 
 /**  Function to create an activities filter. If the checkbox(es) for activities are selected, then display the park results with those attributes.
