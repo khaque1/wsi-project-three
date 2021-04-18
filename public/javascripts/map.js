@@ -1,3 +1,8 @@
+/** Declare global varible
+* @var map
+*/
+  let map;
+
 /** Function to load asynchronous Google API map results for the National Parks based on the user's geolocation
 * or user's input location 
 * @function initMap
@@ -27,7 +32,7 @@ function initMap() {
   * @property {string} center location on map
   * @property {number} zoom zoom map
   */ 
-    const map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
       center: place,
       zoom: 8
     });
@@ -51,38 +56,3 @@ function initMap() {
     });
   }
   
-  function setMarkers() {
-    let iconBase = "http://maps.google.com/mapfiles/kml/paddle/";
-    let locations = JSON.parse(localStorage.getItem("locations"));
-    //let markers = new Array();
-    console.log("In map.js, setMarkers() ", locations);
-    for (let i = 0; i < locations.length; i++) {
-      let marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
-        icon: iconBase + "pink-blank.png",
-        map: map,
-      });
-      //markers.push(marker.position);
-    }
-  
-    //markers.push(map.center);
-  
-    /*
-    let bounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < markers.length; i++) {
-     bounds.extend(markers[i]);
-    }
-    
-    map.fitBounds(bounds);*/
-  
-  }
-  
-  window.addEventListener("load", init, false);
-
-  // Function to call the event listeners from both the html pages
-  // @function setFunctions
-  function init() {
-    let locations = new Array();
-    localStorage.setItem("locations", JSON.stringify(locations));
-    setMarkers();
-  }

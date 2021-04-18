@@ -1,3 +1,31 @@
+/** Function to set markers on the map for all park locations
+* @function setMarkers
+*/
+function setMarkers() {
+  let iconBase = "http://maps.google.com/mapfiles/kml/paddle/";
+  let locations = JSON.parse(localStorage.getItem("locations"));
+  //let markers = new Array();
+  console.log("In map.js, setMarkers() ", locations);
+  for (let i = 0; i < locations.length; i++) {
+    let marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+      icon: iconBase + "pink-blank.png",
+      map: map,
+    });
+    //markers.push(marker.position);
+  }
+
+  //markers.push(map.center);
+
+  /*
+  let bounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < markers.length; i++) {
+    bounds.extend(markers[i]);
+  }
+  
+  map.fitBounds(bounds);*/
+}
+
 /** Function to calculate current geo location of the user
 * @function current_location
 */
@@ -405,6 +433,8 @@ function parks(lat, long, radius) {
           if(document.getElementById("text")){
             document.getElementById("text").innerHTML = "";
           }
+          let locations = new Array();
+          localStorage.setItem("locations", JSON.stringify(locations));
           for (let i = 0; i < list; i++) {
             let fullName = res.data[i].fullName; /** Get Parkname*/ 
             let id = res.data[i].id; /** Get Parkid*/ 
@@ -429,7 +459,8 @@ function parks(lat, long, radius) {
                       + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`;
               }
             }
-          } 
+          }
+          setMarkers(); 
         });
       }
     )
