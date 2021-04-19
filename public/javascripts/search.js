@@ -14,16 +14,26 @@ function setMarkers() {
     });
     markers.push(marker.position);
   }
-
   markers.push(map.center);
 
-  
   let bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < markers.length; i++) {
     bounds.extend(markers[i]);
   }
-  
   map.fitBounds(bounds);
+
+  // refresh storage for next time
+  let newLocations = new Array();
+  localStorage.setItem("locations", JSON.stringify(newLocations));
+
+  /*
+
+   // clear any current markers from the map but leave them in the array
+  for (let i = 0; i < locations.length; i++) {
+    locations[i].setMap(map);
+  }
+
+  */
 }
 
 /** Function to calculate current geo location of the user
@@ -124,7 +134,7 @@ function showCheckboxes1() {
   }
 }
 
-/** Function to exapnd the checbox dropdown for interests filter
+/** Function to expand the checkbox dropdown for interests filter
 * @function showCheckboxes2
 */
 function showCheckboxes2() {
@@ -224,31 +234,35 @@ fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }`
 function ai_checkboxes() {
   resetResults();
   let resultsCheckDuplicates = new Array();
-  //let locations = [];
-  //localStorage.setItem("locations", JSON.stringify(locations));
 
   let activities = document.getElementById("checkboxes1").querySelectorAll('input[type="checkbox"]:checked');
+  let interests = document.getElementById("checkboxes2").querySelectorAll('input[type="checkbox"]:checked');
+
+  let activitiesOnly = false;
+  if(interests.length <= 0){
+    activitiesOnly = true;
+  }
+
   let i;
   let activity_id;
   let activity_name;
   for (i=0; i< activities.length; i++) {
     activity_id = activities[i].id;  
     activity_name = activities[i].value;
-    activitiesFilter(activity_id, activity_name, resultsCheckDuplicates); // Pass the selected activity id to the activitiesFilter function
+    activitiesFilter(activity_id, activity_name, resultsCheckDuplicates, activitiesOnly); // Pass the selected activity id to the activitiesFilter function
   }
-
   if(i>0){
     document.getElementById("selection1").textContent = `${ i } selected`; // Display selected number
   }else if(i<=0){
     document.getElementById("selection1").textContent = "Select Activities"; // Display original text if nothing is checked
   }
 
-  let interests = document.getElementById("checkboxes2").querySelectorAll('input[type="checkbox"]:checked');
+  
   let j;
   let interests_name;
   let interests_id;
   for (j=0; i< interests.length; j++) {
-    interests_id = interests[j].id;  
+    interests_id = interests[j].id;
     interests_name = interests[j].value;
     interestFilter(interests_id, interests_name, resultsCheckDuplicates); // Pass the selected interest id to the interestFilter function
   }
@@ -269,7 +283,7 @@ function ai_checkboxes() {
 * @function activitiesFilter
 * @param {String} activity_id Activity id 
 */
-function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
+async function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates, activitiesOnly) {
   resetResults();
   fetch( `https://developer.nps.gov/api/v1/parks?limit=466&api_key=${ nps_token }` )
     .then(
@@ -313,9 +327,9 @@ function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
                       let distanceBetween = distance(latitude, longitude, lat, long);
                       if(distanceBetween<=radius){
                         resultsCheckDuplicates.push(id);
-                        //locations = JSON.parse(localStorage.getItem("locations"));
-                        //locations.push({ lat: latitude, lng: longitude});
-                        //localStorage.setItem("locations", JSON.stringify(locations));
+                        let locations = JSON.parse(localStorage.getItem("locations"));
+                        locations.push({ lat: latitude, lng: longitude});
+                        localStorage.setItem("locations", JSON.stringify(locations));
                         if (document.getElementById("text")){
                           document.getElementById("text").innerHTML += 
                                     `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
@@ -331,6 +345,9 @@ function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
               }
             }
           } 
+          if(activitiesOnly){
+            setMarkers();
+          }
         });
       }
     )
@@ -344,8 +361,8 @@ function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates) {
 * @function interestFilter
 * @param {String} interests_id Interests id 
 */
-function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
-  
+async function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
+  await activitiesFilter();
   fetch( `https://developer.nps.gov/api/v1/parks?limit=466&api_key=${ nps_token }` )
     .then(
       function(response) {
@@ -387,9 +404,9 @@ function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
                       let distanceBetween = distance(latitude, longitude, lat, long);
                       if(distanceBetween<=radius){
                         resultsCheckDuplicates.push(id);
-                        //locations = JSON.parse(localStorage.getItem("locations"));
-                        //locations.push({ lat: latitude, lng: longitude});
-                        //localStorage.setItem("locations", JSON.stringify(locations));
+                        let locations = JSON.parse(localStorage.getItem("locations"));
+                        locations.push({ lat: latitude, lng: longitude});
+                        localStorage.setItem("locations", JSON.stringify(locations));
                         if (document.getElementById("text")){
                           document.getElementById("text").innerHTML += 
                                     `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
@@ -405,6 +422,7 @@ function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
               }           
             }
           }
+          setMarkers();
         });
       }
     )
@@ -452,7 +470,6 @@ function parks(lat, long, radius) {
             if(distanceBetween<=radius){
               locations = JSON.parse(localStorage.getItem("locations"));
               locations.push({lat: latitude, lng: longitude});
-              console.log("In search.js, parks() LOCATIONS ", locations);
               localStorage.setItem("locations", JSON.stringify(locations));
               if (document.getElementById("text")){
                 /** Display list results that shows park informationID*/ 
@@ -520,13 +537,10 @@ function setFunctions() {
   if(document.getElementById("intr")){
   document.getElementById("intr").addEventListener("click", showCheckboxes2, false);
   }
-  
   if(document.getElementById("checkboxes1")){
   document.getElementById("checkboxes1").addEventListener('change', ai_checkboxes, false);
   }
-
   if(document.getElementById("checkboxes2")){
   document.getElementById("checkboxes2").addEventListener('change', ai_checkboxes, false);
   }
-
 }
