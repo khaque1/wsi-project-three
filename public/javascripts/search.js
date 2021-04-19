@@ -23,11 +23,15 @@ function setMarkers() {
   }
   markers.push(map.center);
 
-  let bounds = new google.maps.LatLngBounds();
-  for (var i = 0; i < markers.length; i++) {
-    bounds.extend(markers[i]);
+  // Prevent zoom from changing if user input pin is the only location
+  if(markersObject.length>0){
+    // Zoom to all pins shown (need at least 2 to work)
+    let bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < markers.length; i++) {
+      bounds.extend(markers[i]);
+    }
+    map.fitBounds(bounds);
   }
-  map.fitBounds(bounds);
 
   // refresh storage for next time
   let newLocations = new Array();
