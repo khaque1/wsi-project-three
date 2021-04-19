@@ -1,3 +1,8 @@
+/** Global variables for resetting pins on the map
+* @var markersObject 
+*/
+  let markersObject;
+
 /** Function to set markers on the map for all park locations
 * @function setMarkers
 */
@@ -5,6 +10,7 @@ function setMarkers() {
   let iconBase = "http://maps.google.com/mapfiles/kml/paddle/";
   let locations = JSON.parse(localStorage.getItem("locations"));
   let markers = new Array();
+  markersObject = new Array();
   console.log("In map.js, setMarkers() ", locations);
   for (let i = 0; i < locations.length; i++) {
     let marker = new google.maps.Marker({
@@ -13,6 +19,7 @@ function setMarkers() {
       map: map,
     });
     markers.push(marker.position);
+    markersObject.push(marker);
   }
   markers.push(map.center);
 
@@ -25,15 +32,16 @@ function setMarkers() {
   // refresh storage for next time
   let newLocations = new Array();
   localStorage.setItem("locations", JSON.stringify(newLocations));
+}
 
-  /*
-
-   // clear any current markers from the map but leave them in the array
-  for (let i = 0; i < locations.length; i++) {
-    locations[i].setMap(map);
+function resetPins(){
+  // clear any current markers from the map
+  for (let i = 0; i < markersObject.length; i++) {
+    markersObject[i].setMap(null);
   }
-
-  */
+  // clear the arrays
+  markersObject = [];
+  markers = [];
 }
 
 /** Function to calculate current geo location of the user
@@ -228,10 +236,13 @@ fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }`
     console.log(err);
   });
 
-/** Function to get the checked checkbox values for activities and interests
+/** Function to get the checked checkbox values for activities and interests and start the filtering processes
 * @function ai_checkbox 
 */
 function ai_checkboxes() {
+  // remove all pins (besides the user inputted one) before deciding which ones to add back
+  resetPins();
+  // remove all text results before adding them back
   resetResults();
   let resultsCheckDuplicates = new Array();
 
