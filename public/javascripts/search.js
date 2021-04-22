@@ -204,7 +204,7 @@ fetch( `https://developer.nps.gov/api/v1/activities?limit=40&&api_key=${ nps_tok
     }
   )
   .catch(function(err) {
-    console.log(err);
+    console.error(err);
   });
  
 
@@ -237,7 +237,7 @@ fetch( `https://developer.nps.gov/api/v1/topics?limit=83&api_key=${ nps_token }`
     }
   )
   .catch(function(err) {
-    console.log(err);
+    console.error(err);
   });
 
 /** Function to get the checked checkbox values for activities and interests and start the filtering processes
@@ -367,7 +367,7 @@ async function activitiesFilter(activity_id, activity_name, resultsCheckDuplicat
       }
     )
   .catch(function(err) {
-    console.log(err);
+    console.error(err);
   });
 }
 
@@ -442,7 +442,7 @@ async function interestFilter(interests_id, interests_name, resultsCheckDuplicat
       }
     )
     .catch(function(err) {
-      console.log(err);
+      console.error(err);
     });
 }
 
@@ -501,7 +501,7 @@ function parks(lat, long, radius) {
       }
     )
   .catch(function(err) {
-    console.log(err);
+    console.error(err);
   });
 }
 parks(localStorage.getItem("latitude"), localStorage.getItem("longitude"), localStorage.getItem("radius"));

@@ -1,3 +1,4 @@
+var compression = require('compression')
 var express = require('express');
 var path = require('path');
 var port = process.env.PORT || 3000;
@@ -6,6 +7,9 @@ var indexRouter = require('./routes/index');
 var resultsRouter = require('./routes/results');
 
 var app = express();
+
+//Implementing gzip compression
+app.use(compression())
 
 // view engine setup
 app.set("port",port);
