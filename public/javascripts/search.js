@@ -350,8 +350,7 @@ async function activitiesFilter(activity_id, activity_name, resultsCheckDuplicat
                                     `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
                                     `<p id= 'parkdescription'> ${ description }</p>`
                                     + `<p id= 'parklocation'><b> State: </b>${ state }</p>`
-                                    + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`
-                                    + `<p id= 'filters'><b> FILTERS Activities:${ activity_name }</p>`;
+                                    + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`;
                         }
                       }
                     }   
@@ -427,8 +426,7 @@ async function interestFilter(interests_id, interests_name, resultsCheckDuplicat
                                     `<br><p id= 'parkname'> <a href='${ parkLink }'> <b>${ fullName }</b> </a></p>` + 
                                     `<p id= 'parkdescription'> ${ description }</p>`
                                     + `<p id= 'parklocation'><b> State: </b>${ state }</p>`
-                                    + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`
-                                    + `<p id= 'filters'><b> FILTERS Interest:${ interests_name }</p>`;
+                                    + `<p id= 'distance'><b> Distance away in miles: </b>${ Math.round(distanceBetween) }</p>`;
                         }
                       }
                     }
@@ -532,6 +530,10 @@ function distance(lat1, lng1, lat2, lng2) {
 }
 
 window.addEventListener("load", setFunctions, false);
+document.getElementById('filter').onsubmit = function() { 
+  return false;
+};
+
 
 /** Function to call the event listeners from both the html pages
 * @function setFunctions

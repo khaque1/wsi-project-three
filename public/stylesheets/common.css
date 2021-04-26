@@ -16,6 +16,14 @@
     height: auto;
 }
 
+/** Set styling for noscript text error if JS is disabled */
+#ns{
+    color: red;
+    font-size:1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
 /** Set styling for filters- Location,radius in index page and activities and interests in results page */
 .filters{
     margin: 0 auto 0 auto;
