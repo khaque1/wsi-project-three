@@ -29,7 +29,7 @@ html(lang='en')
     // Start of Main
     main.filters
       // Start of Form for filters
-      form#filter.form(autocomplete='off')
+      form#filter.form(method='get', action='../results', autocomplete='off')
         // Start of section for filters- location and radius
         section.filter1
           // Label for location filter
@@ -76,9 +76,11 @@ html(lang='en')
       // Start of section for buttons
       section.buttons
         //a(href='../results')
-        button#search.button1 Search
+        button#search.button1(form='filter', type='submit', value='Submit') Search
         button#reset.button2 Clear
       // End of section for buttons
     // End of Main
+    noscript#ns JavaScript should be enabled in the browser to enjoy full functionality of our site
+    // Error if JS is disabled
   // End of body
 // End of HTML document
