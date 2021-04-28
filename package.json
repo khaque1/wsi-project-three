@@ -7,7 +7,7 @@
     "node": "15.8.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "docs": "jsdoc -c conf.jsdoc.json",
     "start": "node app.js"
   },
@@ -27,6 +27,7 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "eslint": "^7.22.0"
+    "eslint": "^7.22.0",
+    "mocha": "^8.3.2"
   }
 }
