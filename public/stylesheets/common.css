@@ -76,3 +76,17 @@
 }
 
 /** End of Progressive disclosure to the filters on index page */
+
+/** Set position and styling for the footer */
+footer {
+    font-weight: normal;
+    font-size:12px;
+    font-family: times, serif;
+    text-align: center;
+    margin: 0 auto 0 auto;
+    display: block;
+    height: auto;
+    margin-top: 2%;
+    margin-bottom: 1%;
+  }
+  
