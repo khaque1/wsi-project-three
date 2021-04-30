@@ -25,3 +25,16 @@ describe('Math', function() {
     });
   });
 });
+
+//test lat long in function search() and parks()
+describe('Coordinates', function() {
+  describe('#search() and #parks()', function() {
+    it('Should return the expected lat lng', function() {
+      //test lat long for localStorage format
+      let location = {lat: 41.834748, lng:  -87.626781};
+      let latitude = 41.834748;
+      let longitude = -87.626781;
+      assert(location, {lat: latitude, lng: longitude});
+    });
+  });
+});
