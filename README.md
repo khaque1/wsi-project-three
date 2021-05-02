@@ -14,6 +14,7 @@ Be sure to FORK and CLONE a copy from your GitHub account.
 ## To Run the Project:
 
 * Please ensure you have the necessary dependencies installed (more information below)
+* **Before proceeding, please get your own Google Maps API key for free from: https://developers.google.com/maps/gmp-get-started#api-key**
 * In your project directory, run `npm start`
 * Then, you are prompted to open [http://localhost:3000](http://localhost:3000) in the web browser of your choice
 
