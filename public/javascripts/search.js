@@ -276,7 +276,7 @@ function ai_checkboxes() {
   let j;
   let interests_name;
   let interests_id;
-  for (j=0; i< interests.length; j++) {
+  for (j=0; j< interests.length; j++) {
     interests_id = interests[j].id;
     interests_name = interests[j].value;
     interestFilter(interests_id, interests_name, resultsCheckDuplicates); // Pass the selected interest id to the interestFilter function
