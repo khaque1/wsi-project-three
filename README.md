@@ -67,7 +67,10 @@ https://jsdoc.app/about-configuring-jsdoc.html
 Run the command ``http-server`` from the out directory, and you can visit http://localhost:8080 to view your documentation page.
 
 - **Update the JSdoc:** <br>
-Run command ``jsdocs ./``
+Move the config file to the root
+Navigate the the public/javascripts directory
+Run command ``jsdoc ./``
+Update the README with ``jsdoc ./ README.md``
 
 ### ESLint:
 

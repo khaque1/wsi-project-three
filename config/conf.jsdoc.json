@@ -4,6 +4,6 @@
     },
     "source":{
         "include": ["./"],
-        "exclude": ["./node_modules/", "./public/config.js"]
+        "exclude": ["./node_modules/", "./out/"]
     }
 }
