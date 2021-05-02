@@ -1,9 +1,9 @@
 {
     "opts":{
-        "destination": "./out/"
+        "destination": "./docs/"
     },
     "source":{
         "include": ["./"],
-        "exclude": ["./node_modules/", "./out/"]
+        "exclude": ["./node_modules/", "./public/config.js"]
     }
 }
