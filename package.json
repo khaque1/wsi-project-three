@@ -8,19 +8,19 @@
   },
   "scripts": {
     "test": "NODE_ENV=test mocha",
-    "docs": "jsdoc -c conf.jsdoc.json",
+    "docs": "jsdoc -c config/conf.jsdoc.json",
     "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khaque1/wsi-project-two.git"
+    "url": "git+https://github.com/for-goodness-SAKE/wsi-project-three.git"
   },
   "author": "Kinza Haque, Sneha Rajulapally, Emma Prager, Alison McDonald",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/khaque1/wsi-project-two/issues"
+    "url": "https://github.com/for-goodness-SAKE/wsi-project-three/issues"
   },
-  "homepage": "https://github.com/khaque1/wsi-project-two#readme",
+  "homepage": "https://github.com/for-goodness-SAKE/wsi-project-three#readme",
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.17.1",
@@ -28,6 +28,8 @@
   },
   "devDependencies": {
     "eslint": "^7.22.0",
-    "mocha": "^8.3.2"
+    "jsdoc": "^3.6.6",
+    "mocha": "^8.3.2",
+    "pm2": "^4.5.6"
   }
 }

@@ -1,6 +1,6 @@
 {
     "opts":{
-        "destination": "./out/"
+        "destination": "./docs/"
     },
     "source":{
         "include": ["./"],
