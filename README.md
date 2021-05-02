@@ -106,6 +106,17 @@ https://www.npmjs.com/package/compression
 - **Vscode installation:** <br>
 ``npm install compression``
 
+### PM2
+
+- **Reference:** <br>
+https://pm2.keymetrics.io/docs/usage/quick-start/
+
+- **Vscode installation:** <br>
+``npm install pm2@latest -g``
+
+- **Run PM2:**
+``pm2 start app.js`` <br>
+
 ## Below is the functionality documentation for our Project for each directory:
 
 ### config
