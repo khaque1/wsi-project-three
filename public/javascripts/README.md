@@ -22,8 +22,8 @@
 
 ***Progressive disclosure:*** Radius filter is disclosed only when the user inputs value in the Location placeholder.
 
-![Index](./../../images/index.png)
-![Index2](./../../images/index2.png)
+![Index](https://raw.githubusercontent.com/for-goodness-SAKE/wsi-project-three/main/public/images/index.png)
+![Index2](https://raw.githubusercontent.com/for-goodness-SAKE/wsi-project-three/main/public/images/index2.png)
 
 **2. Radius:** <br>
 Defaulted to <50 miles. Users must select the radius from dropdown with a range from <10 miles to >300 miles.
@@ -47,25 +47,25 @@ The checkbox dropdown with activity names are fetched from the NPS website. The 
 The checkbox dropdown with interest names are fetched from the NPS website. The JSON data for interest names and ids were pulled using the XMLHttpRequest GET request, and stored in the local file (interests.json). <br>
 **API used:** https://developer.nps.gov/api/v1/topics?topicsCode=acad&api_key=
 
-![Filter](./../../images/filter.png)
+![Filter](https://raw.githubusercontent.com/for-goodness-SAKE/wsi-project-three/main/public/images/filter.png)
 
 ***Results:*** <br>
 **APIs used:**  Google Map API, National Park Service API
 
-![Filter](./../../images/results.png)
+![Results](https://raw.githubusercontent.com/for-goodness-SAKE/wsi-project-three/main/public/images/results.png)
 
 **3. Map:** <br>
 The location coordinates from the index page are passed to the map on the results page, which marks the location of the user in the map (Blue star marker).  The park locations corresponding to the search results appear using the pink markers, and adjust as filters are applied. <br>
 **APIs used:**  Google Map API, National Park Service API
 
-![Filter](./../../images/results-map.png)
+![Results Map](https://raw.githubusercontent.com/for-goodness-SAKE/wsi-project-three/main/public/images/results-map.png)
 
 **4. List Results:** <br>
 Park information such as park name, park description, park location and park distance from user's location are displayed based on the user's inputted location and radius on the index page. The JSON data for park name, individual park links, park description, and state location, were pulled using the XMLHttpRequest GET request. <br>
 **API used:** https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=
 
-![Filter](./../../images/results-list.png)
+![Results List](https://raw.githubusercontent.com/for-goodness-SAKE/wsi-project-three/main/public/images/results-list.png)
 
 Advanced filter options (activities and interests) are applied to get more specific search results, reflected in the map and the list.
 
-![Filter2](./../../images/filter2.png)
+![Filter2](https://raw.githubusercontent.com/for-goodness-SAKE/wsi-project-three/main/public/images/filter2.png)
