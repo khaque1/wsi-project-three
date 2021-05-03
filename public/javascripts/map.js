@@ -20,12 +20,12 @@ function initMap() {
   * @var {number} radius
   */
     let radius = localStorage.getItem("radius");
-    console.log("In maps.js, user input is: ", latitude, longitude, radius);
+    //console.log("In maps.js, user input is: ", latitude, longitude, radius);
   /** Place has the latitude and longitude positions of the location
   * @var {string} place
   */ 
     let place = { lat: latitude, lng: longitude};
-    console.log("In maps.js, center of map is: " , place);
+    //console.log("In maps.js, center of map is: " , place);
   /** Map to view the park results on HTML page with location and zoom
   * @constant map
   * @type {Object}
