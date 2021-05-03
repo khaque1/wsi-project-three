@@ -11,7 +11,7 @@ function setMarkers() {
   let locations = JSON.parse(localStorage.getItem("locations"));
   let markers = new Array();
   markersObject = new Array();
-  console.log("In map.js, setMarkers() ", locations);
+  //console.log("In map.js, setMarkers() ", locations);
   for (let i = 0; i < locations.length; i++) {
     let marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
@@ -63,7 +63,7 @@ function current_location(){
     let long = position.coords.longitude;
     // Combine both latitude and longitude
     let location = `${ lat },${ long }`;
-    console.log("In search.js, location is: ", location); 
+    //console.log("In search.js, location is: ", location); 
     // Call get address function to calculate address based on latitude and longitude coordinates
     getAddress(lat, long);
       /**  
@@ -114,10 +114,10 @@ function search(){
         let long= results[0].geometry.location.lng();
         // Combine both latitude and longitude
         let location = `${ lat },${ long }`;
-        console.log("In search.js search() ", location); 
+        //console.log("In search.js search() ", location); 
         // Get radius value input given by user
         let radius=document.getElementById("rad").value;
-        console.log("In search.js search() ", radius);
+        //console.log("In search.js search() ", radius);
         // Pass location details to results page to generate map and list results
         localStorage.setItem("latitude", lat);
         localStorage.setItem("longitude", long);
@@ -180,13 +180,13 @@ fetch( `../json/activities.json` )
   .then(
     function(response) {
       if (response.status !== 200) {
-        console.log('Status code:' + response.status);
+        //console.log('Status code:' + response.status);
         return;
       }
       
       // Get activity data from NPS API
       response.json().then(function(data) {
-        console.log(data);
+        //console.log(data);
         
         let res = data;
         let list = (res.data).length;
@@ -204,7 +204,7 @@ fetch( `../json/activities.json` )
     }
   )
   .catch(function(err) {
-    console.error(err);
+    //console.error(err);
   });
  
 
@@ -213,13 +213,13 @@ fetch( `../json/interests.json` )
   .then(
     function(response) {
       if (response.status !== 200) {
-        console.log('Status code:' + response.status);
+        //console.log('Status code:' + response.status);
         return;
       }
       
       // Get interest data from NPS API
       response.json().then(function(data) {
-        console.log(data);
+        //console.log(data);
         
         let res = data;
         let list = (res.data).length;
@@ -237,7 +237,7 @@ fetch( `../json/interests.json` )
     }
   )
   .catch(function(err) {
-    console.error(err);
+    //console.error(err);
   });
 
 /** Function to get the checked checkbox values for activities and interests and start the filtering processes
@@ -304,13 +304,13 @@ async function activitiesFilter(activity_id, activity_name, resultsCheckDuplicat
     .then(
       function(response) {
         if (response.status !== 200) {
-          console.log('Status code:' + response.status);
+          //console.log('Status code:' + response.status);
           return;
         }
         
         /** Get ParkInformation such as park name, park description and park links from NPS API */ 
         response.json().then(function(data) {
-          console.log(data);
+          //console.log(data);
           
           let res = data;
           let list = (res.data).length;
@@ -366,7 +366,7 @@ async function activitiesFilter(activity_id, activity_name, resultsCheckDuplicat
       }
     )
   .catch(function(err) {
-    console.error(err);
+    //console.error(err);
   });
 }
 
@@ -381,13 +381,13 @@ async function interestFilter(interests_id, interests_name, resultsCheckDuplicat
     .then(
       function(response) {
         if (response.status !== 200) {
-          console.log('Status code:' + response.status);
+          //console.log('Status code:' + response.status);
           return;
         }
         
         /** Get ParkInformation such as park name, park description and park links from NPS API */ 
         response.json().then(function(data) {
-          console.log(data);
+          //console.log(data);
           
           let res = data;
           let list = (res.data).length;
@@ -440,7 +440,7 @@ async function interestFilter(interests_id, interests_name, resultsCheckDuplicat
       }
     )
     .catch(function(err) {
-      console.error(err);
+      //console.error(err);
     });
 }
 
@@ -456,12 +456,12 @@ function parks(lat, long, radius) {
     .then(
       function(response) {
         if (response.status !== 200) {
-          console.log('Status code:' + response.status);
+          //console.log('Status code:' + response.status);
           return;
         }
         /** Get ParkInformation such as park name, park description and park links from NPS API */ 
         response.json().then(function(data) {
-          console.log(data);
+          //console.log(data);
           
           let res = data;
           let list = (res.data).length;
@@ -499,7 +499,7 @@ function parks(lat, long, radius) {
       }
     )
   .catch(function(err) {
-    console.error(err);
+    //console.error(err);
   });
 }
 parks(localStorage.getItem("latitude"), localStorage.getItem("longitude"), localStorage.getItem("radius"));

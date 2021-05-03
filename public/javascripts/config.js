@@ -4,7 +4,7 @@
 let maps_url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAupsqitkeU66afXbypqbGtkxwKqOlfovs&callback=initMap&libraries=&v=weekly';
 
 window.addEventListener('load', (event) => {
-  console.log('page is fully loaded');
+  //console.log('page is fully loaded');
   var apiScript = document.createElement(tagName='script');
   apiScript.src = maps_url;
   apiScript.setAttribute('async','');
