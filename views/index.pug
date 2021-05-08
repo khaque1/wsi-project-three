@@ -21,11 +21,7 @@ html(lang='en')
   // End of head
   // Start of body
   body
-    // Start of page header
-    header.head
-      h1 National Park Finder
-      // Page title
-    // End of page header
+    include elements/header.pug
     // Start of Main
     main.filters
       // Start of Form for filters
@@ -82,9 +78,6 @@ html(lang='en')
     // End of Main
     noscript#ns JavaScript should be enabled in the browser to enjoy full functionality of our site
     // Error if JS is disabled
-    //Start of footer
-    footer#footer 
-      p © 2021 - for goodness SAKE
-    //End of footer
+    include element/footer.pug
   // End of body
 // End of HTML document
