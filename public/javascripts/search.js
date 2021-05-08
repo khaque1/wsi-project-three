@@ -176,7 +176,7 @@ function resetResults() {
 
 
 // Function to pull in the activity names from the NPS API and display them as options in the drop down list
-fetch( `../json/activities.json` )
+fetch( `./api/json/activities.json` )
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -209,7 +209,7 @@ fetch( `../json/activities.json` )
  
 
 // Function to pull in the interests names from the NPS API and display them as options in the drop down list
-fetch( `../json/interests.json` )
+fetch( `./api/json/interests.json` )
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -300,7 +300,7 @@ function ai_checkboxes() {
 */
 async function activitiesFilter(activity_id, activity_name, resultsCheckDuplicates, activitiesOnly) {
   resetResults();
-  fetch( `../json/parks.json` )
+  fetch( `./api/json/parks.json` )
     .then(
       function(response) {
         if (response.status !== 200) {
@@ -377,7 +377,7 @@ async function activitiesFilter(activity_id, activity_name, resultsCheckDuplicat
 */
 async function interestFilter(interests_id, interests_name, resultsCheckDuplicates) {
   await activitiesFilter();
-  fetch( `../json/parks.json` )
+  fetch( `./api/json/parks.json` )
     .then(
       function(response) {
         if (response.status !== 200) {
@@ -452,7 +452,7 @@ async function interestFilter(interests_id, interests_name, resultsCheckDuplicat
 */
 function parks(lat, long, radius) {
   /** Get ParkInformation such as park name, park description and park links from NPS API */ 
-  fetch( `../json/parks.json` )
+  fetch( `./api/json/parks.json` )
     .then(
       function(response) {
         if (response.status !== 200) {
