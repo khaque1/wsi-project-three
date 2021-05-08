@@ -23,11 +23,7 @@ html(lang='en')
   // End of head
   // Start of body
   body
-    // Start of page header
-    header.head
-      h1 National Park Finder
-      // Page title
-    // End of page header
+    include elements/header.pug
     // Start of Main for filters
     main.filters
       // Start of Form for filters
@@ -80,9 +76,6 @@ html(lang='en')
         // End of article for park details in list
       // End of section for list
     // End of main
-    //Start of footer
-    footer#footer 
-      p © 2021 - for goodness SAKE
-    //End of footer
+    include elements/footer.pug
   // End of body
 // End of HTML document
