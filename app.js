@@ -18,6 +18,7 @@ app.set('view engine', 'pug');
 
 // set paths to use
 app.use(express.static('public'));
+app.use('/api', express.static(path.join(__dirname, 'data')));
 app.use('/index', indexRouter);
 app.use('/results', resultsRouter);
 
