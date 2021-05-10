@@ -1,6 +1,7 @@
 var compression = require('compression');
 var express = require('express');
 var path = require('path');
+require('dotenv').config()
 var port = process.env.PORT || 3000;
 
 var indexRouter = require('./routes/index');
@@ -18,7 +19,16 @@ app.set('view engine', 'pug');
 
 // set paths to use
 app.use(express.static('public'));
+app.use(
+    "/json",
+    express.static(path.resolve(__dirname, "../data/json/parks.json"))
+  );
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: false
+}));
 app.use('/api', express.static(path.join(__dirname, 'data')));
+app.use('/', indexRouter);
 app.use('/index', indexRouter);
 app.use('/results', resultsRouter);
 

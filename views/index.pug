@@ -25,7 +25,7 @@ html(lang='en')
     // Start of Main
     main.filters
       // Start of Form for filters
-      form#filter.form(method='get', action='../results', autocomplete='off')
+      form#filter.form(method='get', action='/results', autocomplete='off', name='filter')
         // Start of section for filters- location and radius
         section.filter1
           // Label for location filter
@@ -41,7 +41,7 @@ html(lang='en')
               br
               | 3.Park Name - Ex:Yosemite National Park, Grand Canyon National Park
           // Example text for the location placeholder
-          input#loc(placeholder='Grand Canyon National Park *' type='text' value='' required)
+          input#loc(placeholder='Grand Canyon National Park *' type='text' value='' name="location" required)
           // Button to get the current location of user on click
           button#currlocation.location Get Current Location
           // Start of fieldset for progressive disclosure of radius filter
@@ -49,7 +49,7 @@ html(lang='en')
             // Label for radius filter
             label(for='radius') How far do you want to travel?
             // Start of select Dropdown options for radius
-            select#rad
+            select#rad(name="radius")
               option(value='10') < 10 miles
               option(value='25') < 25 miles
               option(value='50' selected) < 50 miles
@@ -68,16 +68,18 @@ html(lang='en')
             // End of select Dropdown options for radius
           // End of fieldset for progressive disclosure of radius filter
         // End of section for filters- location and radius
+        button#search.button1(method='get', action='/results', type='submit', value='Submit') Search
       // End of Form for filters
       // Start of section for buttons
       section.buttons
         //a(href='../results')
-        button#search.button1(form='filter', type='submit', value='Submit') Search
-        button#reset.button2 Clear
+        //button#search.button1(form='filter', type='submit', value='Submit') Search
+        button#reset.button2(value='Clear')
+          a(href='/') Clear
       // End of section for buttons
     // End of Main
     noscript#ns JavaScript should be enabled in the browser to enjoy full functionality of our site
     // Error if JS is disabled
-    include element/footer.pug
+    include elements/footer.pug
   // End of body
 // End of HTML document
