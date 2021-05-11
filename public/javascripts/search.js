@@ -509,7 +509,7 @@ async function interestFilter(
   */
  function parks(lat, long, radius) {
   /** Get ParkInformation such as park name, park description and park links from NPS API */
-  fetch(`../json/parks.json`)
+  fetch(`../api/json/parks.json`)
     .then(function (response) {
       if (response.status !== 200) {
         //console.log('Status code:' + response.status);
