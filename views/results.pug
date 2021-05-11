@@ -73,7 +73,16 @@ html(lang='en')
       section.list
         // Start of article for park details in list
         article#text
-        // End of article for park details in list
+          each park in parkList
+              p#parkname
+                a(href=park.parkLink)
+                  b=park.fullName
+              p#parkdescription=park.description
+              p#parklocation
+                b  State: #{park.state}
+              p#distance
+                b  Distance away in miles: #{park.distance}
+      // End of article for park details in list
       // End of section for list
     // End of main
     include elements/footer.pug
