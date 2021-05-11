@@ -11,7 +11,7 @@ function setMarkers() {
   let locations = JSON.parse(localStorage.getItem("locations"));
   let markers = new Array();
   markersObject = new Array();
-  console.log("In map.js, setMarkers() ", locations);
+  //console.log("In map.js, setMarkers() ", locations);
 
   for (let i = 0; i < locations.length; i++) {
       let marker = new google.maps.Marker({
