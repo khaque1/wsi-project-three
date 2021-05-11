@@ -24,10 +24,11 @@
   "homepage": "https://github.com/for-goodness-SAKE/wsi-project-three#readme",
   "dependencies": {
     "compression": "^1.7.4",
-    "dotenv": "^9.0.1",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "node-geocoder": "^3.27.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "eslint": "^7.22.0",

@@ -11,9 +11,9 @@ function setMarkers() {
   let locations = JSON.parse(localStorage.getItem("locations"));
   let markers = new Array();
   markersObject = new Array();
-  //console.log("In map.js, setMarkers() ", locations);
+  console.log("In map.js, setMarkers() ", locations);
   for (let i = 0; i < locations.length; i++) {
-    let marker = new google.maps.Marker({
+      let marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
       icon: iconBase + "pink-blank.png",
       map: map,
@@ -32,11 +32,9 @@ function setMarkers() {
     }
     map.fitBounds(bounds);
   }
-
-  // refresh storage for next time
-  let newLocations = new Array();
-  localStorage.setItem("locations", JSON.stringify(newLocations));
+  
 }
+
 
 function resetPins() {
   // clear any current markers from the map
@@ -509,7 +507,7 @@ async function interestFilter(
   */
  function parks(lat, long, radius) {
   /** Get ParkInformation such as park name, park description and park links from NPS API */
-  fetch(`../json/parks.json`)
+  fetch(`../api/json/parks.json`)
     .then(function (response) {
       if (response.status !== 200) {
         //console.log('Status code:' + response.status);
@@ -518,14 +516,15 @@ async function interestFilter(
       /** Get ParkInformation such as park name, park description and park links from NPS API */
       response.json().then(function (data) {
         //console.log(data);
-
         let res = data;
         let list = res.data.length;
+        
         if (document.getElementById("text")) {
           document.getElementById("text").innerHTML = "";
         }
         let locations = new Array();
         localStorage.setItem("locations", JSON.stringify(locations));
+        
         for (let i = 0; i < list; i++) {
           let fullName = res.data[i].fullName; /** Get Parkname*/
           let id = res.data[i].id; /** Get Parkid*/
