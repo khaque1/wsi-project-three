@@ -34,7 +34,7 @@ router.post("/", async (req, res, next) => {
 async function parksLocation(lat, long, radius) {
   try {
     const parksList = await fsPromises.readFile(
-      path.resolve(__dirname, "../data/json/parks.json"),
+      path.resolve(__dirname, "../api/json/parks.json"),
       "utf-8"
     );
 

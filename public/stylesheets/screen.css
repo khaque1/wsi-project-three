@@ -94,15 +94,14 @@ label{
   overflow: visible;
   font-size: 1.25em;
   margin: 0.5em;
-  width: auto;
+  width: 40%;
   border-radius: 1em;
-  height: 1.5em;
+  height: auto;
   line-height: 1.5em;
   padding: 0 2em;
   cursor: pointer;
   float: left;
   margin-top: 0.75em;
-  
 }
 
 /** Set styling for Clear button */
@@ -111,12 +110,16 @@ label{
   color: white;
   overflow: visible;
   font-size: 1.5em;
-  width: auto;
-  height:2em;
+  width: 25%;
+  height:auto;
   border-radius: 1em;
   display: inline-block;
   line-height: 2em;
   padding: 0 2em;
   cursor: pointer;
-  
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }

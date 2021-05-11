@@ -180,7 +180,7 @@ function resetResults() {
 }
 
 // Function to pull in the activity names from the NPS API and display them as options in the drop down list
-fetch(`./api/json/activities.json`)
+fetch(`../api/json/activities.json`)
   .then(function (response) {
     if (response.status !== 200) {
       //console.log('Status code:' + response.status);
@@ -211,7 +211,7 @@ fetch(`./api/json/activities.json`)
   });
 
 // Function to pull in the interests names from the NPS API and display them as options in the drop down list
-fetch(`./api/json/interests.json`)
+fetch(`../api/json/interests.json`)
   .then(function (response) {
     if (response.status !== 200) {
       //console.log('Status code:' + response.status);
@@ -321,7 +321,7 @@ async function activitiesFilter(
   activitiesOnly
 ) {
   resetResults();
-  fetch(`./api/json/parks.json`)
+  fetch(`../api/json/parks.json`)
     .then(function (response) {
       if (response.status !== 200) {
         //console.log('Status code:' + response.status);
@@ -419,7 +419,7 @@ async function interestFilter(
   resultsCheckDuplicates
 ) {
   await activitiesFilter();
-  fetch(`./api/json/parks.json`)
+  fetch(`../api/json/parks.json`)
     .then(function (response) {
       if (response.status !== 200) {
         //console.log('Status code:' + response.status);
