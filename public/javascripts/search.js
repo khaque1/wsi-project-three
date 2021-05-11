@@ -299,7 +299,7 @@ function ai_checkboxes() {
     document.getElementById("selection2").textContent =
       "Select Interests"; /** Display original text if nothing is checked*/
   }
-  /*
+  
   if (i <= 0 && j <= 0) {
     parks(
       localStorage.getItem("latitude"),
@@ -307,7 +307,7 @@ function ai_checkboxes() {
       localStorage.getItem("radius")
     );
   }
-  */
+  
 }
 
 /**  Function to create an activities filter. If the checkbox(es) for activities are selected, then display the park results with those attributes.
