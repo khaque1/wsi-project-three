@@ -121,6 +121,42 @@ https://pm2.keymetrics.io/docs/usage/quick-start/
 - **Run PM2:**
 ``pm2 start app.js`` <br>
 
+### Dotenv
+
+- **Reference:** <br>
+https://www.npmjs.com/package/dotenv
+
+- **Vscode installation:** <br>
+``npm install dotenv``
+
+- **Configure dotenv:** <br>
+The following line is added in app.js: ``require('dotenv').config()`` <br>
+Then, add a ``.env`` file in the root directory <br>
+In the new file, add a line with: ``MAP_KEY= {YOUR GOOGLE MAPS API KEY HERE}`` <br>
+``.env`` is in the ``.gitignore`` file, so your key will not be pushed to your repository <br>
+*If you do not have a Google Maps API key, follow the directions at the beginning of the README* <br>
+
+### node-geocoder
+
+- **Reference:** <br>
+https://www.npmjs.com/package/node-geocoder
+
+- **Vscode installation:** <br>
+``npm install node-geocoder``
+
+- **Configure dotenv:** <br>
+The following line code is added in routes/results.js: <br>
+``const NodeGeocoder = require('node-geocoder')`` <br>
+This is connected to the new API key, allowing the geocoder to function:
+```
+const options = {
+    provider: 'google',
+    apiKey: process.env.MAP_KEY, // google map API key
+    formatter: null 
+};
+const geocoder = NodeGeocoder(options);
+```
+
 ## Below is the functionality documentation for our Project for each directory:
 
 ### config
