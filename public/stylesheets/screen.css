@@ -79,41 +79,47 @@ label{
 }
 
 /** Set styling for buttons section - search and clear form inputs */
-.buttons{
+.buttons, .button1{
   font: verdana, sans-serif;
   padding-top: 0.25em;
-  padding-bottom: 0.25em;
+  padding-bottom: 0.75em;
   font-size: 100%;
 }
+
 
 /** Set styling for Search button */
 .button1{
   background-color: #35954F;
   color: white;
-  background-position: left;
   overflow: visible;
-  font-size: 1.5em;
+  font-size: 1.25em;
   margin: 0.5em;
-  width: auto;
+  width: 40%;
   border-radius: 1em;
-  display: inline-block;
-  line-height: 2em;
+  height: auto;
+  line-height: 1.5em;
   padding: 0 2em;
   cursor: pointer;
+  float: left;
+  margin-top: 0.75em;
 }
 
 /** Set styling for Clear button */
 .button2{
   background-color: #9D4040;
   color: white;
-  background-position: right;
   overflow: visible;
   font-size: 1.5em;
-  margin: 0.5em;
-  width: auto;
+  width: 25%;
+  height:auto;
   border-radius: 1em;
   display: inline-block;
   line-height: 2em;
   padding: 0 2em;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
