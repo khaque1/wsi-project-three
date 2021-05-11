@@ -12,11 +12,13 @@ function setMarkers() {
   let markers = new Array();
   markersObject = new Array();
   console.log("In map.js, setMarkers() ", locations);
+
   for (let i = 0; i < locations.length; i++) {
       let marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
       icon: iconBase + "pink-blank.png",
       map: map,
+      
     });
     markers.push(marker.position);
     markersObject.push(marker);
@@ -32,6 +34,10 @@ function setMarkers() {
     }
     map.fitBounds(bounds);
   }
+
+  // refresh storage for next time
+  let newLocations = new Array();
+  localStorage.setItem("locations", JSON.stringify(newLocations));
   
 }
 
